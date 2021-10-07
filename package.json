@@ -1,0 +1,81 @@
+{
+  "name": "electron-app",
+  "version": "1.0.0",
+  "description": "My electron app",
+  "main": "main.js",
+  "scripts": {
+    "import": "electron-forge import",
+    "start": "electron-forge start",
+    "test": "jest",
+    "storybook": "start-storybook -p 6006",
+    "webpack": "webpack --watch",
+    "build-storybook": "build-storybook",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
+  },
+  "keywords": [],
+  "author": "J8rl_Chic",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.15.5",
+    "@babel/preset-env": "^7.15.6",
+    "@electron-forge/cli": "^6.0.0-beta.61",
+    "@electron-forge/maker-deb": "^6.0.0-beta.61",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.61",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.61",
+    "@electron-forge/maker-zip": "^6.0.0-beta.61",
+    "@storybook/addon-actions": "^6.3.8",
+    "@storybook/addon-essentials": "^6.3.8",
+    "@storybook/addon-links": "^6.3.8",
+    "@storybook/html": "^6.3.8",
+    "@testing-library/dom": "^8.5.0",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/user-event": "^13.2.1",
+    "babel-eslint": "^10.1.0",
+    "babel-jest": "^27.2.0",
+    "babel-loader": "^8.2.2",
+    "electron": "^14.0.0",
+    "electron-reloader": "^1.2.1",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "jest": "^27.2.0",
+    "prettier": "2.4.0",
+    "webpack": "^5.54.0",
+    "webpack-cli": "^4.8.0"
+  },
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.0",
+    "exceljs": "^4.3.0"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {},
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "electron_app"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ]
+    }
+  }
+}
