@@ -20,6 +20,7 @@
 
 ### 라이브러리
 + React
++ React Testing Library
 + DOM Testing Library
 
 ### 도구
