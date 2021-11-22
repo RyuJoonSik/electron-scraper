@@ -18,7 +18,7 @@ describe('component 앱', () => {
     };
   }
 
-  it('has Header', async () => {
+  it('searches brand', async () => {
     const { body, header } = set();
 
     expect(header).toBeInTheDocument();
@@ -46,6 +46,25 @@ describe('component 앱', () => {
     expect(searchResultWord).toBeInTheDocument();
     expect(searchLastPageNum).toBeInTheDocument();
 
+    const startNumberInput = getByTestId(body, 'download-bar-start-page');
+    const endNumberInput = getByTestId(body, 'download-bar-end-page');
+
+    userEvent.type(startNumberInput, '1');
+    userEvent.type(endNumberInput, '1');
+
+    const spyConsole = jest.spyOn(console, 'log');
+
+    const downloadBtn = getByTestId(body, 'download-bar-button');
+
+    userEvent.click(downloadBtn);
+    await waitFor(() => expect(spyConsole).toBeCalledWith('소요 시간 : 0초'));
+  });
+
+  it('searches keyword', async () => {
+    const { body, header } = set();
+
+    expect(header).toBeInTheDocument();
+
     const keywordRadioBtn = getByTestId(body, 'search-type-keyword');
 
     userEvent.click(keywordRadioBtn);
@@ -54,7 +73,7 @@ describe('component 앱', () => {
 
     expect(searchBarKeyword).toBeInTheDocument();
 
-    searchBtn = getByTestId(body, 'search-bar-btn');
+    let searchBtn = getByTestId(body, 'search-bar-btn');
 
     userEvent.click(searchBtn);
     userEvent.type(searchBarKeyword, 'vitamin');
@@ -63,11 +82,11 @@ describe('component 앱', () => {
 
     userEvent.click(searchBtn);
 
-    const newSearchResultWord = await findByText(body, '검색어 : vitamin');
-    const newSearchLastPageNum = await findByText(body, `마지막 페이지 : 417`);
+    const searchResultWord = await findByText(body, '검색어 : vitamin');
+    const searchLastPageNum = await findByText(body, `마지막 페이지 : 417`);
 
-    expect(newSearchResultWord).toBeInTheDocument();
-    expect(newSearchLastPageNum).toBeInTheDocument();
+    expect(searchResultWord).toBeInTheDocument();
+    expect(searchLastPageNum).toBeInTheDocument();
 
     const startNumberInput = getByTestId(body, 'download-bar-start-page');
     const endNumberInput = getByTestId(body, 'download-bar-end-page');
@@ -77,11 +96,10 @@ describe('component 앱', () => {
     userEvent.type(endNumberInput, '2');
     expect(endNumberInput).toHaveValue('2');
 
-    const downloadBtn = getByTestId(body, 'download-bar-button');
     const spyConsole = jest.spyOn(console, 'log');
+    const downloadBtn = getByTestId(body, 'download-bar-button');
 
     userEvent.click(downloadBtn);
-
-    await waitFor(() => expect(spyConsole).toBeCalled());
+    await waitFor(() => expect(spyConsole).toBeCalledWith('소요 시간 : 0초'));
   });
 });

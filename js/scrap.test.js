@@ -350,7 +350,7 @@ describe('엑셀_저장', () => {
     await 스크랩.엑셀_저장(제품_배열, 파일_경로);
 
     expect(spyWorkBook).toBeCalledWith('My Products');
-    expect(WorkSheet.columns.length).toBe(12);
+    expect(WorkSheet.columns.length).toBe(11);
     expect(WorkSheet.columns).toEqual([
       { header: '대표 이미지 파일명', key: '대표_이미지_파일_이름' },
       { header: '나머지 이미지 파일명', key: '후보_이미지_파일_이름' },
@@ -363,7 +363,6 @@ describe('엑셀_저장', () => {
       { header: '별점', key: '별점' },
       { header: '리뷰 수', key: '후기_수' },
       { header: '재고 상태', key: '상태' },
-      { header: '사용 방법 번역', key: 'suggestedUseKR' },
     ]);
     expect(spyAddRow.mock.calls.length).toBe(2);
     expect(spyAddRow.mock.calls[0][0]).toEqual({
@@ -383,8 +382,9 @@ describe('엑셀_저장', () => {
       배송비: '$5',
       URL: 'https://kr.iherb.com/pr/california-gold-nutrition-vitamin-c-gummies-natural-orange-flavor-gelatin-free-90-gummies/69569',
       브랜드: 'California Gold Nutrition',
-      대표_이미지_파일_이름: undefined,
-      후보_이미지_파일_이름: '',
+      대표_이미지_파일_이름: 'https://s3.images-iherb.com/cgn/cgn01092/y/165.jpg',
+      후보_이미지_파일_이름:
+        'https://s3.images-iherb.com/cgn/cgn01092/y/170.jpg,https://s3.images-iherb.com/cgn/cgn01092/y/164.jpg',
     });
     expect(spyAddRow.mock.calls[1][0]).toEqual({
       이름: 'Garden of Life, Vitamin Code, RAW Vitamin C, 500 mg, 120 Vegan Capsules',
@@ -404,8 +404,9 @@ describe('엑셀_저장', () => {
       배송비: null,
       URL: 'https://kr.iherb.com/pr/garden-of-life-vitamin-code-raw-vitamin-c-500-mg-120-vegan-capsules/46038',
       브랜드: 'Garden of Life',
-      대표_이미지_파일_이름: undefined,
-      후보_이미지_파일_이름: '',
+      대표_이미지_파일_이름: 'https://s3.images-iherb.com/gol/gol11655/y/15.jpg',
+      후보_이미지_파일_이름:
+        'https://s3.images-iherb.com/gol/gol11655/y/12.jpg,https://s3.images-iherb.com/gol/gol11655/y/16.jpg,https://s3.images-iherb.com/gol/gol11655/y/8.jpg',
     });
     expect(spyWriteFile).toBeCalledWith(파일_경로);
   });

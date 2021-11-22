@@ -27,6 +27,7 @@ const mockFetch = (URL) => {
       /* 제품 금지성분 페이지 */
       case 'https://kr.iherb.com/pr/futurebiotics-vitamin-k2-d3-with-vitamin-k2-as-mk-7-120-capsules/99900': {
         return Promise.resolve({
+          ok: true,
           text: () => Promise.resolve(페이지['제품_금지성분_유']),
         });
       }
@@ -34,6 +35,7 @@ const mockFetch = (URL) => {
       /* 제품 배송비 무료 페이지 */
       case 'https://kr.iherb.com/pr/garden-of-life-vitamin-code-raw-vitamin-c-500-mg-120-vegan-capsules/46038': {
         return Promise.resolve({
+          ok: false,
           text: () => Promise.resolve(페이지['제품_배송비_무']),
         });
       }
@@ -42,6 +44,29 @@ const mockFetch = (URL) => {
       case 'https://kr.iherb.com/c/21st-century-health-care': {
         return Promise.resolve({
           text: () => Promise.resolve(페이지['_21stCentury_검색']),
+        });
+      }
+
+      /* 브랜드 '21st Century' 검색 페이지 1 */
+      case 'https://kr.iherb.com/c/21st-century-health-care?p=1': {
+        return Promise.resolve({
+          text: () => Promise.resolve(페이지['_21stCentury_검색1']),
+        });
+      }
+
+      /* 브랜드 '21st Century' 검색 페이지 1 상세 제품 1 */
+      case 'https://www.iherb.com/pr/21st-century-glucosamine-chondroitin-double-strength-500-mg-400-mg-400-easy-to-swallow-capsules/9406': {
+        return Promise.resolve({
+          ok: true,
+          text: () => Promise.resolve(페이지['_21stCentury_제품1']),
+        });
+      }
+
+      /* 브랜드 '21st Century' 검색 페이지 1  상세 제품 2 */
+      case 'https://www.iherb.com/pr/21st-century-glucosamine-chondroitin-plus-hyaluronic-acid-msm-120-tablets/40459': {
+        return Promise.resolve({
+          ok: true,
+          text: () => Promise.resolve(페이지['_21stCentury_제품2']),
         });
       }
 
@@ -54,6 +79,7 @@ const mockFetch = (URL) => {
       /* 제품 상세 페이지 */
       case 'https://kr.iherb.com/pr/california-gold-nutrition-vitamin-c-gummies-natural-orange-flavor-gelatin-free-90-gummies/69569': {
         return Promise.resolve({
+          ok: true,
           text: () => Promise.resolve(페이지['제품_상세정보']),
         });
       }
@@ -101,6 +127,8 @@ require('exceljs').Workbook.mockImplementation(() => ({
 beforeAll(() => {
   global.fetch = mockFetch;
   Image.prototype.decode = () => Promise.resolve;
+  console.log = () => {};
+  console.error = () => {};
 
   const ctx = {
     clearRect: () => {},
