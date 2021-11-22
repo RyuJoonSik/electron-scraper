@@ -25,28 +25,28 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>9/9</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>2/2</span>
+                <span class='fraction'>0/0</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">66.66% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>3/3</span>
+                <span class='fraction'>2/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>9/9</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
@@ -83,10 +83,23 @@
 <a name='L24'></a><a href='#L24'>24</a>
 <a name='L25'></a><a href='#L25'>25</a>
 <a name='L26'></a><a href='#L26'>26</a>
-<a name='L27'></a><a href='#L27'>27</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L27'></a><a href='#L27'>27</a>
+<a name='L28'></a><a href='#L28'>28</a>
+<a name='L29'></a><a href='#L29'>29</a>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a>
+<a name='L35'></a><a href='#L35'>35</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -96,23 +109,31 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">14x</span>
-<span class="cline-any cline-yes">14x</span>
-<span class="cline-any cline-yes">14x</span>
-<span class="cline-any cline-yes">14x</span>
-<span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import 컴포넌트 from '../Component/Component';
 export default class 검색_유형 extends 컴포넌트 {
-    템플릿() {
-        return `
+    constructor(부모, 속성) {
+        super(부모);
+        this.속성 = 속성;
+    }
+    HTML_추가() {
+        const { 부모 } = this;
+        부모.innerHTML = `
       &lt;div data-testid="search-type"&gt;
         &lt;input data-testid="search-type-keyword" id="searchKeyword" name="search-type" type="radio" value="keyword"/&gt;
         &lt;label data-testid="search-type-keyword-label" for="searchKeyword"&gt;키워드&lt;/label&gt;
@@ -121,18 +142,21 @@ export default class 검색_유형 extends 컴포넌트 {
       &lt;/div&gt;
     `;
     }
-    설정() {
-        const { 유형 } = this.속성;
-        const 선택된_버튼 = this.부모_컴포넌트.querySelector(`[value="${유형}"]`);
-        선택된_버튼.checked = true;
-        const 버튼_박스 = this.부모_컴포넌트.querySelector('[data-testid="search-type"]');
-        버튼_박스.addEventListener('click', this.클릭_이벤트.bind(this));
-    }
-    클릭_이벤트(e) {
-        const 타겟 = e.target;
-        if (타겟 instanceof HTMLInputElement) {
-            this.속성.유형_변경(타겟.value);
-        }
+    // 이벤트_설정() {
+    //   // const { 유형 } = this.속성;
+    //   //   const 선택된_버튼 = this.부모_컴포넌트.querySelector(`[value="${유형}"]`) as HTMLInputElement;
+    //   //   선택된_버튼.checked = true;
+    //   const 컨테이너 = this.부모.querySelector('[data-testid="search-type"]') as HTMLDivElement;
+    //   컨테이너.addEventListener('click', this.클릭_이벤트.bind(this));
+    //   //   버튼_박스.addEventListener('click', this.클릭_이벤트.bind(this));
+    //   // }
+    // }
+<span class="fstat-no" title="function not covered" >    클릭</span>_이벤트(e) {
+        // if (특정_요소이면) {
+        // }
+        // const {검색_유형_변경} = this.속성;
+        // const 타겟 = e.target as HTMLElement;
+        // 검색_유형_변경();
     }
 }
 &nbsp;</pre></td></tr></table></pre>
@@ -142,7 +166,7 @@ export default class 검색_유형 extends 컴포넌트 {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Mon Nov 22 2021 00:48:13 GMT+0900 (대한민국 표준시)
+                at Mon Nov 22 2021 21:58:49 GMT+0900 (대한민국 표준시)
             </div>
         </div>
         <script src="../../prettify.js"></script>

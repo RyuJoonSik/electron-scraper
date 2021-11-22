@@ -90,14 +90,14 @@
     "skipLibCheck": true /* Skip type checking all .d.ts files. */
   },
   "include": [
-    "./Components/Component"
-    // "./Components/SearchResult",
-    // "./Components/SearchType",
-    // "./Components/SearchButton",
+    "./Components/Component",
+    "./Components/SearchResult",
+    "./Components/SearchType",
+    // "./Components/SearchButton"
     // "./Components/SearchBarBrand",
     // "./Components/SearchBarKeyword",
     // "./Components/DownloadBar",
-    // "./js"
+    "./js/domUtility"
   ]
   // "exclude": ["./node_modules"]
 }
