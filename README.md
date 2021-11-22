@@ -28,13 +28,13 @@
 + Webpack
 
 ## 목표
-+ ~~React 클래스 형 컴포넌트로 개발 후 함수형 컴포넌트로 코드 변경해 보기~~
-+ ~~React Testing Librar로 테스트 코드 작성해 보기~~
-+ ~~Electron으로 데스크톱 앱 개발 후 Electron Forge로 배포 파일 만들기~~
-+ ~~JavaScript로 컴포넌트 만들어 보기~~
-+ ~~DOM Testing Library로 JavaScript 컴포넌트 테스트 코드 작성해 보기~~
-+ ~~한글 변수 사용해 보기~~
-+ ~~TypeScript로 마이그레이션 해 보기~~
++ React 클래스 형 컴포넌트로 개발 후 함수형 컴포넌트로 코드 변경해 보기 - [ ]
++ React Testing Librar로 테스트 코드 작성해 보기
++ Electron으로 데스크톱 앱 개발 후 Electron Forge로 배포 파일 만들기
++ JavaScript로 컴포넌트 만들어 보기
++ DOM Testing Library로 JavaScript 컴포넌트 테스트 코드 작성해 보기
++ 한글 변수 사용해 보기
++ TypeScript로 마이그레이션 해 보기
 + TypeScript 클린 코드, 구글 스타일 가이드 참고하며 코드 수정하기
 
 가족의 요청으로 시작하게 되었습니다. 초기에는 Listly(구글 익스텐션)를 사용해 보았지만 매번 페이지를 지정해 주어야 하는 단점 때문에 다른 방법으로 Excel과 Selenium을 사용해 보았습니다.
