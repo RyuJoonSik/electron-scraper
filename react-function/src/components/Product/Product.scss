@@ -1,0 +1,38 @@
+@charset "utf-8";
+
+.product {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 18rem;
+  height: 25rem;
+  margin: 0 auto 1rem;
+  background-color: white;
+
+  &__title {
+    overflow: hidden;
+    position: absolute;
+    z-index: 0;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    padding: 0.5rem;
+    text-align: center;
+    font-size: 1.5rem;
+    color: #fff;
+    cursor: pointer;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    &::after {
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background-color: rgba(0, 0, 0, 0.8);
+      content: '';
+    }
+  }
+}

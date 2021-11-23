@@ -1,0 +1,124 @@
+@charset "utf-8";
+@import '../variable.scss';
+
+$controller-width: 10rem;
+$controller-row-height: ($controller-width - 2rem) / 4;
+
+.controller {
+  position: fixed;
+  top: 50%;
+  right: 1%;
+  z-index: 1;
+  width: $controller-width;
+  border: 1px solid #000;
+  background-color: white;
+  transform: translateY(-50%);
+  opacity: 0.5;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &__title {
+    background-color: #000;
+    text-align: center;
+    color: white;
+    line-height: 1.5;
+  }
+
+  &__content-wrap {
+    padding: 0 0.5rem 0.5rem 0.5rem;
+  }
+
+  &__keyword {
+    overflow: hidden;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    line-height: 2;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    height: $controller-row-height;
+    font-size: 1.3rem;
+  }
+  &__content + &__content {
+    margin-top: 0.5rem;
+  }
+
+  &__button--first-row {
+    position: relative;
+    width: $controller-row-height;
+  }
+
+  &__button--toNext {
+    margin-left: -10px;
+  }
+
+  &__button--toFirst::before,
+  &__button--toLast::before,
+  &__button--first-row::after {
+    position: absolute;
+    top: 50%;
+    width: 40%;
+    height: 40%;
+    border: solid white;
+    border-width: 0 0 4px 4px;
+    content: '';
+  }
+
+  &__button--toFirst::after,
+  &__button--toPrev::after {
+    left: 75%;
+  }
+
+  &__button--toNext::after,
+  &__button--toLast::after {
+    left: 25%;
+  }
+
+  &__button--toFirst::before,
+  &__button--toFirst::after,
+  &__button--toPrev::before,
+  &__button--toPrev::after {
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  &__button--toNext::before,
+  &__button--toNext::after,
+  &__button--toLast::before,
+  &__button--toLast::after {
+    transform: translate(-50%, -50%) rotate(-135deg);
+  }
+
+  &__button {
+    height: 100%;
+    border: 1px solid black;
+    background-color: $bright-blue;
+    font-size: 1rem;
+    color: white;
+  }
+
+  &__page-info {
+    display: inline-block;
+    flex: 2 2;
+  }
+
+  &__button--flex-1 {
+    flex: 1 1;
+  }
+
+  &__input {
+    display: inline-block;
+    width: 3rem;
+    background-color: #eee;
+    text-align: center;
+  }
+
+  &__button--margin-left {
+    margin-left: 0.5rem;
+  }
+}

@@ -1,0 +1,19 @@
+@charset "utf-8";
+
+.scroller {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1 1 50%;
+  height: 2rem;
+  padding: 0;
+  border: 1px solid #000;
+  background-color: #2f78c5;
+  font-size: 1.5rem;
+  color: white;
+  cursor: pointer;
+}
+
+.scroller + .scroller {
+  margin-left: 0.5rem;
+}

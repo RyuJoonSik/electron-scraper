@@ -1,0 +1,55 @@
+@charset "utf-8";
+
+.pagination-button {
+  position: relative;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid black;
+  background-color: #2f78c5;
+  font-size: 1rem;
+  color: white;
+  cursor: pointer;
+}
+.pagination-button--next {
+  margin-left: -10px;
+}
+.pagination-button::after,
+.pagination-button--first::before,
+.pagination-button--last::before {
+  position: absolute;
+  top: 50%;
+  width: 40%;
+  height: 40%;
+  border: solid white;
+  border-width: 0 0 4px 4px;
+  content: '';
+}
+.pagination-button--first::after,
+.pagination-button--prev::after {
+  left: 75%;
+}
+.pagination-button--next::after,
+.pagination-button--last::after {
+  left: 25%;
+}
+.pagination-button--first::before,
+.pagination-button--first::after,
+.pagination-button--prev::before,
+.pagination-button--prev::after {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+.pagination-button--next::before,
+.pagination-button--next::after,
+.pagination-button--last::before,
+.pagination-button--last::after {
+  transform: translate(-50%, -50%) rotate(-135deg);
+}
+.pagination-button--num {
+  flex: 1 1;
+  height: 32px;
+  padding: 0;
+  line-height: 1;
+}
+.pagination-button--num::after {
+  display: none;
+}

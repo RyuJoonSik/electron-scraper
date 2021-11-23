@@ -1,0 +1,52 @@
+@charset "utf-8";
+
+/* Color ---------------------------------------------------------------------------------------------------------------- */
+$blue: #0f60b6;
+$bright-blue: #2f78c5;
+$white-gray: #f2f2f2;
+/* Color End------------------------------------------------------------------------------------------------------------- */
+
+/* HEADER --------------------------------------------------------------------------------------------------------------- */
+// $header-bgc-color: $blue;
+// $header-padding: 2rem;
+/* SARCH-BAR ------------------------------------------------------------------------------------------------------------ */
+// $search-bar-width: 100%;
+// $search-bar-height: 4rem;
+// $serach-bar-font-size: 2rem;
+// $serach-bar-input-text-indent: 1rem;
+// $serach-bar-input-text-flex: 1 1;
+// $search-bar-button-bgc: $white-gray;
+// $search-bar-button-padding: 0 1rem;
+// $search-bar-button-flex: 0 0 6rem;
+// $search-bar-button-bgc: transparent;
+/* SARCH-BAR End--------------------------------------------------------------------------------------------------------- */
+/* HEADER End------------------------------------------------------------------------------------------------------------ */
+
+/* MAIN ----------------------------------------------------------------------------------------------------------------- */
+// $main-bgc: $white-gray;
+// $main-title-width: 100%;
+// $main-title-padding: 1rem 0;
+// $main-title-font-size: 2rem;
+/* PRODUCT -------------------------------------------------------------------------------------------------------------- */
+// $product-item-width: 18rem;
+// $product-item-height: 25rem;
+// $product-item-margin: 0 auto 1rem;
+// $product-item-bgc: $white;
+// $product-item-font-size: 1.5rem;
+// $product-item-padding: 0.5rem;
+
+/* PRODUCT End----------------------------------------------------------------------------------------------------------- */
+/* MAIN End-------------------------------------------------------------------------------------------------------------- */
+
+@mixin sortCenter($sort: center) {
+  display: flex;
+  justify-content: $sort;
+  align-items: $sort;
+}
+
+@mixin textOverflow($overflow: ellipsis) {
+  overflow: hidden;
+  width: 100%;
+  text-overflow: $overflow;
+  white-space: nowrap;
+}

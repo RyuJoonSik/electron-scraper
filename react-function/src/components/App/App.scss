@@ -1,0 +1,21 @@
+.supplement-facts-container {
+  width: 800px;
+  border: 1px solid #000;
+
+  tr:nth-child(odd) {
+    background-color: #e0e0e0;
+    // border-bottom: 1px solid #000;
+  }
+
+  strong {
+    font-weight: bold;
+  }
+
+  td {
+    padding: 5px;
+  }
+
+  td:nth-child(n + 2) {
+    text-align: center;
+  }
+}

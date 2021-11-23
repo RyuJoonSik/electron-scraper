@@ -1,0 +1,13 @@
+@charset "utf-8";
+@import '../variable.scss';
+
+.main {
+  background-color: $white-gray;
+
+  &__title {
+    @include sortCenter();
+    width: 100%;
+    padding: 1rem 0;
+    font-size: 2rem;
+  }
+}

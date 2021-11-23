@@ -1,0 +1,95 @@
+@charset "utf-8";
+@import '../variable.scss';
+
+.product-item {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 18rem;
+  position: relative;
+  height: 25rem;
+  margin: 0 auto 1rem;
+  background-color: white;
+
+  &__title {
+    @include textOverflow();
+    position: absolute;
+    z-index: 0;
+    box-sizing: border-box;
+    padding: 0.5rem;
+    font-size: 1.5rem;
+    color: #fff;
+    cursor: pointer;
+
+    &::after {
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background-color: rgba(0, 0, 0, 0.8);
+      content: '';
+    }
+  }
+
+  &__link {
+  }
+
+  &__img {
+    display: block;
+    width: 100%;
+  }
+
+  &__content-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1;
+    padding: 0 1rem;
+    font-size: 1.3rem;
+  }
+
+  &__content {
+    @include sortCenter();
+    flex: 1 1;
+    font-weight: bold;
+  }
+
+  &__content--margin-left {
+    * + * {
+      margin-left: 1rem;
+    }
+  }
+
+  &__star {
+    display: flex;
+    align-items: center;
+    flex: 1 1;
+  }
+
+  &__review {
+    @include sortCenter();
+    flex: 2 2;
+  }
+
+  &__state {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex: 1 1;
+  }
+
+  &__price {
+    @include sortCenter();
+  }
+
+  &__price--isDiscount {
+    margin-left: 1rem;
+    color: red;
+  }
+
+  &__URL {
+  }
+
+  &__download {
+  }
+}
