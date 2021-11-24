@@ -2,6 +2,7 @@ import {특정_요소이면} from '../../js/domUtility/domUtility';
 import 컴포넌트 from '../Component/Component';
 
 interface 속성 {
+  검색_유형: string;
   검색_유형_변경(): void;
 }
 
@@ -25,11 +26,11 @@ export default class 검색_유형 extends 컴포넌트 {
     `;
   }
 
-  // 태그_속성_초기화() {
-  //   const {검색_유형} = this.속성;
-  //   const 버튼 = this.부모.querySelector(`[value="${검색_유형}"]`) as HTMLInputElement;
-  //   버튼.checked = true;
-  // }
+  태그_속성_초기화() {
+    const {검색_유형} = this.속성;
+    const 버튼 = this.부모.querySelector(`[value="${검색_유형}"]`) as HTMLInputElement;
+    버튼.checked = true;
+  }
 
   이벤트_설정() {
     const 컴포넌트_박스 = this.부모.querySelector('[data-testid="search-type"]') as HTMLDivElement;
@@ -39,9 +40,9 @@ export default class 검색_유형 extends 컴포넌트 {
 
   클릭_이벤트(e: MouseEvent) {
     const {검색_유형_변경} = this.속성;
-    const 타겟 = e.target as HTMLInputElement | HTMLLabelElement;
+    const 타겟 = e.target as HTMLInputElement;
 
-    if (특정_요소이면(타겟, [HTMLInputElement, HTMLLabelElement])) {
+    if (특정_요소이면(타겟, [HTMLInputElement])) {
       const {value: 검색_유형} = 타겟 as HTMLInputElement;
 
       검색_유형_변경(검색_유형);

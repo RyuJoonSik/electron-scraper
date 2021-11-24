@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/5</span>
+                <span class='fraction'>8/8</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/3</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/5</span>
+                <span class='fraction'>8/8</span>
             </div>
         
             
@@ -55,7 +55,7 @@
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -73,36 +73,51 @@
 <a name='L14'></a><a href='#L14'>14</a>
 <a name='L15'></a><a href='#L15'>15</a>
 <a name='L16'></a><a href='#L16'>16</a>
-<a name='L17'></a><a href='#L17'>17</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L17'></a><a href='#L17'>17</a>
+<a name='L18'></a><a href='#L18'>18</a>
+<a name='L19'></a><a href='#L19'>19</a>
+<a name='L20'></a><a href='#L20'>20</a>
+<a name='L21'></a><a href='#L21'>21</a>
+<a name='L22'></a><a href='#L22'>22</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import 컴포넌트 from '../Component/Component';
 export default class 검색_버튼 extends 컴포넌트 {
-<span class="fstat-no" title="function not covered" >    템플</span>릿() {
-<span class="cstat-no" title="statement not covered" >        return `</span>
-    &lt;button data-testid="search-bar-btn" type="button"&gt;검색&lt;/button&gt;
+    constructor(부모, 속성) {
+        super(부모);
+        this.속성 = 속성;
+    }
+    HTML_추가() {
+        const { 부모 } = this;
+        부모.innerHTML = `
+    &lt;button data-testid="search-btn" type="button"&gt;검색&lt;/button&gt;
     `;
     }
-<span class="fstat-no" title="function not covered" >    설정</span>() {
-        const 버튼 = <span class="cstat-no" title="statement not covered" >this.부모_컴포넌트.querySelector('[data-testid="search-bar-btn"]');</span>
-<span class="cstat-no" title="statement not covered" >        버튼.addEventListener('click', this.클릭_이벤트.bind(this));</span>
+    이벤트_설정() {
+        const 버튼 = this.부모.querySelector('[data-testid="search-btn"]');
+        버튼.addEventListener('click', this.클릭_이벤트.bind(this));
     }
-<span class="fstat-no" title="function not covered" >    as</span>ync 클릭_이벤트() {
-        const { 검색, 검색어 } = <span class="cstat-no" title="statement not covered" >this.속성;</span>
-<span class="cstat-no" title="statement not covered" >        await 검색(검색어);</span>
+    async 클릭_이벤트() {
+        const { 검색, 검색어 } = this.속성;
+        await 검색(검색어);
     }
 }
 &nbsp;</pre></td></tr></table></pre>
@@ -112,7 +127,7 @@ export default class 검색_버튼 extends 컴포넌트 {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Mon Nov 22 2021 19:50:34 GMT+0900 (대한민국 표준시)
+                at Thu Nov 25 2021 02:56:55 GMT+0900 (대한민국 표준시)
             </div>
         </div>
         <script src="../../prettify.js"></script>

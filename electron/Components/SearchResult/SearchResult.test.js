@@ -10,19 +10,20 @@ describe('검색_결과 컴포넌트', () => {
 
     컴포넌트.렌더();
 
-    return 컴포넌트;
+    const 검색어_태그 = screen.getByTestId('search-result-word');
+    const 마지막_페이지_번호_태그 = screen.getByTestId('search-result-last-page-number');
+
+    return {검색어_태그, 마지막_페이지_번호_태그};
   }
 
   it('검색어 태그(b)를 갖고 있다', () => {
-    const 컴포넌트 = 초기화();
-    const 검색어_태그 = screen.getByTestId('search-result-word');
+    const {검색어_태그} = 초기화();
 
     expect(검색어_태그).toBeInTheDocument();
   });
 
   it('검색 결과의 마지막 페이지 번호를 알려주는 태그(b)를 갖고 있다', () => {
-    const 컴포넌트 = 초기화();
-    const 마지막_페이지_번호_태그 = screen.getByTestId('search-result-last-page-number');
+    const {마지막_페이지_번호_태그} = 초기화();
 
     expect(마지막_페이지_번호_태그).toBeInTheDocument();
   });
@@ -32,8 +33,7 @@ describe('검색_결과 컴포넌트', () => {
     const 속성 = {
       검색어
     };
-    const 컴포넌트 = 초기화(속성);
-    const 검색어_태그 = screen.getByTestId('search-result-word');
+    const {검색어_태그} = 초기화(속성);
 
     expect(검색어_태그).toHaveTextContent(검색어);
   });
@@ -43,8 +43,7 @@ describe('검색_결과 컴포넌트', () => {
     const 속성 = {
       마지막_페이지_번호
     };
-    const 컴포넌트 = 초기화(속성);
-    const 마지막_페이지_번호_태그 = screen.getByTestId('search-result-last-page-number');
+    const {마지막_페이지_번호_태그} = 초기화(속성);
 
     expect(마지막_페이지_번호_태그).toHaveTextContent(마지막_페이지_번호);
   });

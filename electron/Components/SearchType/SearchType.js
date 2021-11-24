@@ -16,11 +16,11 @@ export default class 검색_유형 extends 컴포넌트 {
       </div>
     `;
     }
-    // 태그_속성_초기화() {
-    //   const {검색_유형} = this.속성;
-    //   const 버튼 = this.부모.querySelector(`[value="${검색_유형}"]`) as HTMLInputElement;
-    //   버튼.checked = true;
-    // }
+    태그_속성_초기화() {
+        const { 검색_유형 } = this.속성;
+        const 버튼 = this.부모.querySelector(`[value="${검색_유형}"]`);
+        버튼.checked = true;
+    }
     이벤트_설정() {
         const 컴포넌트_박스 = this.부모.querySelector('[data-testid="search-type"]');
         컴포넌트_박스.addEventListener('click', this.클릭_이벤트.bind(this));
@@ -28,7 +28,7 @@ export default class 검색_유형 extends 컴포넌트 {
     클릭_이벤트(e) {
         const { 검색_유형_변경 } = this.속성;
         const 타겟 = e.target;
-        if (특정_요소이면(타겟, [HTMLInputElement, HTMLLabelElement])) {
+        if (특정_요소이면(타겟, [HTMLInputElement])) {
             const { value: 검색_유형 } = 타겟;
             검색_유형_변경(검색_유형);
         }

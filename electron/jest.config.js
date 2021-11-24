@@ -5,8 +5,8 @@ module.exports = {
     'Components/Component',
     'Components/SearchResult',
     'Components/SearchType',
-    // 'Components/SearchButton'
-    // "Components/SearchBarBrand",
+    'Components/SearchButton',
+    'Components/SearchBarBrand',
     // "Components/SearchBarKeyword",
     // "Components/DownloadBar",
     'js/domUtility'

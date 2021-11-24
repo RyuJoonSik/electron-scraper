@@ -1,14 +1,27 @@
 import 컴포넌트 from '../Component/Component';
 
+interface 속성 {
+  검색어: string;
+  검색(): void;
+}
+
 export default class 검색_버튼 extends 컴포넌트 {
+  constructor(부모: HTMLElement, 속성: 속성) {
+    super(부모);
+
+    this.속성 = 속성;
+  }
+
   HTML_추가() {
-    return `
-    <button data-testid="search-bar-btn" type="button">검색</button>
+    const {부모} = this;
+
+    부모.innerHTML = `
+    <button data-testid="search-btn" type="button">검색</button>
     `;
   }
 
-  설정() {
-    const 버튼 = this.부모_컴포넌트.querySelector('[data-testid="search-bar-btn"]') as HTMLButtonElement;
+  이벤트_설정() {
+    const 버튼 = this.부모.querySelector('[data-testid="search-btn"]') as HTMLButtonElement;
 
     버튼.addEventListener('click', this.클릭_이벤트.bind(this));
   }
