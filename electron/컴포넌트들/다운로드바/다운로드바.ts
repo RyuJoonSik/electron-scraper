@@ -2,7 +2,7 @@ import 컴포넌트 from '../컴포넌트/컴포넌트';
 import {요소_값_반환, 요소_찾기} from '../../js/domUtility/domUtility';
 
 interface 속성 {
-  다운로드(): void;
+  다운로드(시작_페이지_번호: number, 끝_페이지_번호: number): void;
 }
 
 export default class 다운로드_바 extends 컴포넌트 {
@@ -39,11 +39,11 @@ export default class 다운로드_바 extends 컴포넌트 {
     // TODO: 반복되는 명령을 줄여야 할 것 같다.
     const 시작_페이지_번호_인풋_선택자 = '[data-testid="download-bar-start-page"]';
     const 시작_페이지_번호_인풋 = 요소_찾기(부모, 시작_페이지_번호_인풋_선택자) as HTMLInputElement;
-    const 시작_페이지_번호 = 요소_값_반환(시작_페이지_번호_인풋);
+    const 시작_페이지_번호 = Number(요소_값_반환(시작_페이지_번호_인풋));
 
     const 끝_페이지_번호_인풋_선택자 = '[data-testid="download-bar-end-page"]';
     const 끝_페이지_번호_인풋 = 요소_찾기(부모, 끝_페이지_번호_인풋_선택자) as HTMLInputElement;
-    const 끝_페이지_번호 = 요소_값_반환(끝_페이지_번호_인풋);
+    const 끝_페이지_번호 = Number(요소_값_반환(끝_페이지_번호_인풋));
 
     await 다운로드(시작_페이지_번호, 끝_페이지_번호);
   }

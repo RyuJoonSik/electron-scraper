@@ -3,10 +3,10 @@ import 컴포넌트 from '../컴포넌트/컴포넌트';
 
 interface 속성 {
   검색_유형: string;
-  검색_유형_변경(): void;
+  검색_유형_변경(검색_유형: string): void;
 }
 
-export default class 검색_유형 extends 컴포넌트 {
+export default class 검색_유형_상자 extends 컴포넌트 {
   constructor(부모: HTMLElement, 속성: 속성) {
     super(부모);
 

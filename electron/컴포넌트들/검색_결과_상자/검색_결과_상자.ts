@@ -5,7 +5,7 @@ interface 속성 {
   마지막_페이지_번호: number;
 }
 
-export default class 검색_결과 extends 컴포넌트 {
+export default class 검색_결과_상자 extends 컴포넌트 {
   constructor(부모: HTMLElement, 속성: 속성) {
     super(부모);
 

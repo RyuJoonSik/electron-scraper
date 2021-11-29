@@ -1,14 +1,14 @@
 import {screen} from '@testing-library/dom';
 import '@testing-library/jest-dom';
 
-import 검색_결과 from './검색_결과';
+import 검색_결과_상자 from './검색_결과_상자';
 
-describe('검색_결과 컴포넌트', () => {
+describe('검색_결과_상자 컴포넌트', () => {
   function 초기화(속성 = {}) {
     const {body: 부모} = document;
-    const 검색_결과_컴포넌트 = new 검색_결과(부모, 속성);
+    const 검색_결과_상자_컴포넌트 = new 검색_결과_상자(부모, 속성);
 
-    검색_결과_컴포넌트.렌더();
+    검색_결과_상자_컴포넌트.렌더();
 
     const 검색어_텍스트 = screen.getByTestId('search-result-word');
     const 마지막_페이지_텍스트 = screen.getByTestId('search-result-last-page-number');

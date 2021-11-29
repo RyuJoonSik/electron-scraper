@@ -2,6 +2,7 @@ export default class 컴포넌트 {
     부모;
     상태 = {};
     속성 = {};
+    자식_배열 = [];
     constructor(부모) {
         this.부모 = 부모;
     }

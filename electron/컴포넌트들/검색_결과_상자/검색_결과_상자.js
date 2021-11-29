@@ -1,5 +1,5 @@
 import 컴포넌트 from '../컴포넌트/컴포넌트';
-export default class 검색_결과 extends 컴포넌트 {
+export default class 검색_결과_상자 extends 컴포넌트 {
     constructor(부모, 속성) {
         super(부모);
         this.속성 = 속성;

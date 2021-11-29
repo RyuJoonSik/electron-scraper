@@ -1,4 +1,4 @@
-import 페이지 from './data/page.js';
+import 페이지 from './데이터/목업_페이지';
 
 const mockFetch = (URL) => {
   try {

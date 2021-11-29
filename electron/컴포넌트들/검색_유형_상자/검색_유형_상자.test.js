@@ -2,14 +2,14 @@ import {screen} from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 
-import 검색_유형 from './검색_유형';
+import 검색_유형_상자 from './검색_유형_상자';
 
-describe('검색_유형 컴포넌트', () => {
+describe('검색_유형_상자 컴포넌트', () => {
   function 초기화(속성 = {검색_유형: 'keyword'}) {
     const {body: 부모} = document;
-    const 검색_유형_컴포넌트 = new 검색_유형(부모, 속성);
+    const 검색_유형_상자_컴포넌트 = new 검색_유형_상자(부모, 속성);
 
-    검색_유형_컴포넌트.렌더();
+    검색_유형_상자_컴포넌트.렌더();
 
     const 브랜드_라디오_버튼 = screen.getByTestId('search-type-brand');
     const 브랜드_라디오_버튼_라벨 = screen.getByTestId('search-type-brand-label');

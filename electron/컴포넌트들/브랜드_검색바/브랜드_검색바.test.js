@@ -21,7 +21,7 @@ describe('브랜드_검색바', () => {
     };
   }
 
-  function 검색_버튼_질의() {
+  function 검색_버튼_탐색() {
     const 검색_버튼 = screen.getByTestId('search-btn');
 
     return 검색_버튼;
@@ -81,7 +81,7 @@ describe('브랜드_검색바', () => {
   });
 
   it("'검색_버튼' 컴포넌트가 있다.", () => {
-    const 검색_버튼 = 검색_버튼_질의();
+    const 검색_버튼 = 검색_버튼_탐색();
 
     expect(검색_버튼).toBeInTheDocument();
   });
@@ -98,18 +98,21 @@ describe('브랜드_검색바', () => {
     const {상태} = 브랜드_검색바_컴포넌트;
     const {검색어} = 상태;
     const 검색_스파이 = jest.spyOn(속성, '검색');
-    const 검색_버튼 = 검색_버튼_질의();
+    const 검색_버튼 = 검색_버튼_탐색();
+    const URL_접두사 = `https://kr.iherb.com/c/`;
 
     userEvent.click(검색_버튼);
-    expect(검색_스파이).toBeCalledWith(검색어);
+    expect(검색_스파이).toBeCalledWith(URL_접두사, 검색어);
 
     const {value: 변경된_브랜드} = 두번째_브랜드;
 
     userEvent.selectOptions(브랜드_셀렉트, 변경된_브랜드);
 
-    const 새_검색_버튼 = 검색_버튼_질의();
+    const 새_검색_버튼 = 검색_버튼_탐색();
+    const {검색어: 변경된_검색어} = 상태;
+    const 변경된_URL_접두사 = `https://kr.iherb.com/c/`;
 
     userEvent.click(새_검색_버튼);
-    expect(검색_스파이).toBeCalledWith(변경된_브랜드);
+    expect(검색_스파이).toBeCalledWith(변경된_URL_접두사, 변경된_검색어);
   });
 });

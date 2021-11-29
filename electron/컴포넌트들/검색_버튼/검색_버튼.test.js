@@ -24,14 +24,33 @@ describe('검색_버튼', () => {
 
   it("button 태그(검색 버튼)를 클릭하면 속성['검색']이 호출된다.", () => {
     const 검색어 = 'vitamin';
+    const 검색_유형 = 'keyword';
     const 속성 = {
       검색어,
+      검색_유형,
       검색: jest.fn()
     };
     const {버튼} = 초기화(속성);
     const 검색_스파이 = jest.spyOn(속성, '검색');
+    const URL_접두사 = `https://kr.iherb.com/search?kw=`;
 
     userEvent.click(버튼);
-    expect(검색_스파이).toBeCalledWith(검색어);
+    expect(검색_스파이).toBeCalledWith(URL_접두사, 검색어);
+  });
+
+  it("속성['검색_유형']에 따라 URL 접두사가 변한다.", () => {
+    const 검색_유형 = 'keyword';
+    const 검색어 = 'vitamin';
+    const 속성 = {
+      검색어,
+      검색_유형,
+      검색: jest.fn()
+    };
+    const URL_접두사 = `https://kr.iherb.com/search?kw=`;
+    const {버튼} = 초기화(속성);
+    const 검색_스파이 = jest.spyOn(속성, '검색');
+
+    userEvent.click(버튼);
+    expect(검색_스파이).toBeCalledWith(URL_접두사, 검색어);
   });
 });

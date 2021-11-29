@@ -60,18 +60,22 @@ describe('키워드_검색바', () => {
 
   it("'검색_버튼' 컴포넌트가 있다.", () => {
     const 속성 = {
-      검색: jest.fn()
+      검색: jest.fn(),
+      검색_유형: 'keyword'
     };
     const 검색_스파이 = jest.spyOn(속성, '검색');
     const {검색_버튼, 검색어_인풋} = 초기화(속성);
+    const 검색어 = 'vitamin';
 
     expect(검색_버튼).toBeInTheDocument();
-    userEvent.type(검색어_인풋, 'abc');
+    userEvent.type(검색어_인풋, 검색어);
 
     const 변경된_검색_버튼 = screen.getByTestId('search-btn');
 
     expect(변경된_검색_버튼).toBeInTheDocument();
     userEvent.click(변경된_검색_버튼);
-    expect(검색_스파이).toBeCalledWith('abc');
+
+    const URL_접두사 = `https://kr.iherb.com/search?kw=`;
+    expect(검색_스파이).toBeCalledWith(URL_접두사, 검색어);
   });
 });

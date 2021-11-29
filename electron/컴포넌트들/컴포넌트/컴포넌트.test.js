@@ -8,13 +8,14 @@ describe('컴포넌트 클래스', () => {
     return 새_컴포넌트;
   }
 
-  it("'부모', '속성', '상태' 프로퍼티들을 갖고 있다", () => {
+  it("'부모', '속성', '상태', '자식_배열' 프로퍼티들을 갖고 있다", () => {
     const {body: 부모} = document;
     const 새_컴포넌트 = new 컴포넌트(부모);
 
     expect(새_컴포넌트).toHaveProperty('부모');
     expect(새_컴포넌트).toHaveProperty('속성');
     expect(새_컴포넌트).toHaveProperty('상태');
+    expect(새_컴포넌트).toHaveProperty('자식_배열');
   });
 
   it("'렌더' 메서드 호출 시 'HTML_추가', '태그_속성_초기화', '이벤트_설정', '자식_렌더' 순으로 메서드들을 호출시킨다", () => {

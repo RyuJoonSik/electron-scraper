@@ -1,6 +1,6 @@
 import 컴포넌트 from '../컴포넌트/컴포넌트';
 import 검색_버튼 from '../검색_버튼/검색_버튼';
-import 브랜드 from '../../data/brand.json';
+import 브랜드 from '../../데이터/브랜드.json';
 import { 옵션_배열_생성, 옵션_선택, 요소_찾기, 요소_값_반환 } from '../../js/domUtility/domUtility';
 export default class 브랜드_검색바 extends 컴포넌트 {
     브랜드 = 브랜드;
@@ -34,21 +34,24 @@ export default class 브랜드_검색바 extends 컴포넌트 {
         옵션_선택(브랜드_옵션);
     }
     자식_렌더() {
-        const 검색_버튼_컴포넌트 = this.검색_버튼_생성();
-        검색_버튼_컴포넌트.렌더();
+        this.검색_버튼_생성();
+        this.자식_배열.forEach((자식) => {
+            자식.렌더();
+        });
     }
     검색_버튼_생성() {
-        const { 검색 } = this.속성;
+        const { 검색, 검색_유형 } = this.속성;
         const { 검색어 } = this.상태;
         const { 부모 } = this;
-        const 검색_버튼_컨테이너_선택자 = '[data-testid="search-button-container"]';
-        const 검색_버튼_컨테이너 = 요소_찾기(부모, 검색_버튼_컨테이너_선택자);
-        const 검색_버튼_속성 = {
+        const 컨테이너_선택자 = '[data-testid="search-button-container"]';
+        const 컨테이너 = 요소_찾기(부모, 컨테이너_선택자);
+        const 속성 = {
             검색,
-            검색어
+            검색어,
+            검색_유형
         };
-        const 검색_버튼_컴포넌트 = new 검색_버튼(검색_버튼_컨테이너, 검색_버튼_속성);
-        return 검색_버튼_컴포넌트;
+        const 컴포넌트 = new 검색_버튼(컨테이너, 속성);
+        this.자식_배열.push(컴포넌트);
     }
     이벤트_설정() {
         const { 부모 } = this;

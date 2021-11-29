@@ -68,16 +68,16 @@ describe('다운로드_바', () => {
     };
     const {다운로드_버튼, 시작_페이지_번호_인풋, 끝_페이지_번호_인풋} = 초기화(속성);
     const 다운로드_스파이 = jest.spyOn(속성, '다운로드');
-    const 시작_페이지_번호 = '1';
-    const 끝_페이지_번호 = '10';
+    const 시작_페이지_번호 = 1;
+    const 끝_페이지_번호 = 10;
 
-    userEvent.type(시작_페이지_번호_인풋, 시작_페이지_번호);
-    userEvent.type(끝_페이지_번호_인풋, 끝_페이지_번호);
+    userEvent.type(시작_페이지_번호_인풋, String(시작_페이지_번호));
+    userEvent.type(끝_페이지_번호_인풋, String(끝_페이지_번호));
     userEvent.click(다운로드_버튼);
     expect(다운로드_스파이).toBeCalledWith(시작_페이지_번호, 끝_페이지_번호);
 
-    const 바꾼_시작_페이지_번호 = '11';
-    const 바꾼_끝_페이지_번호 = '20';
+    const 바꾼_시작_페이지_번호 = 11;
+    const 바꾼_끝_페이지_번호 = 20;
     const 백_스페이스 = '{backspace}';
 
     userEvent.type(시작_페이지_번호_인풋, 백_스페이스 + 바꾼_시작_페이지_번호);
