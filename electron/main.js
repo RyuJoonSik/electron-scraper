@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron');
+const {app, BrowserWindow} = require('electron');
 // const path = require('path');
 // require('electron-reloader')(module);
 
@@ -9,9 +9,9 @@ function createWindow() {
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
-      enableRemoteModule: true,
-      //   preload: path.join(__dirname, 'preload.js'),
-    },
+      enableRemoteModule: true
+      // preload: path.join(__dirname, 'preload.js')
+    }
   });
 
   win.loadFile('./index.html');

@@ -5,6 +5,7 @@ import {
   옵션_선택,
   요소_값_반환,
   요소_찾기,
+  인풋_값_반환,
   인풋_커서_위치_초기화,
   페이지_요청,
   DOM_변환,
@@ -20,9 +21,22 @@ import {
   제품_URL_탐색,
   제품_이름_탐색,
   제품_이미지_URL_배열_탐색,
-  제품_후기_탐색
+  제품_리뷰_탐색,
+  제품_가격_탐색,
+  제품_배송비_지불,
+  제품_사용법_탐색,
+  제품_재고_상태_탐색,
+  제품_정보_생성,
+  파일_경로_생성,
+  엑셀_파일_경로_생성,
+  제품_정보_배열_생성,
+  워크_시트_칼럼_배열_생성,
+  워크_시트_제품_칼럼_배열_생성,
+  워크_시트_설정,
+  워크_시트_생성
 } from './domUtility';
-import 목업_페이지 from '../../데이터/목업_페이지';
+import 목업_페이지 from '../../data/mockupPage.js';
+import * as ExcelJS from 'exceljs';
 
 describe('특정_요소이면', () => {
   it('타겟 요소가 input이거나 label인지 판별한다.', () => {
@@ -121,6 +135,22 @@ describe('인풋_커서_위치_초기화', () => {
   });
 });
 
+describe('인풋_값_반환', () => {
+  it('인풋 요소의 값을 반환한다.', () => {
+    const 부모 = document.createElement('div');
+    const 인풋 = document.createElement('input');
+    const 값 = 'abc';
+    const 선택자 = 'input';
+    인풋.value = 값;
+
+    부모.appendChild(인풋);
+
+    const 결과 = 인풋_값_반환(부모, 선택자);
+
+    expect(결과).toBe(값);
+  });
+});
+
 describe('fetch 테스트', () => {
   async function 비타민_검색_페이지_DOM_생성() {
     const URL = 'https://kr.iherb.com/search?kw=vitamin';
@@ -210,6 +240,8 @@ describe('fetch 테스트', () => {
 
       expect(마지막_페이지_번호).toBe(417);
     });
+
+    // TODO: 검색결과가 단일 페이지일 경우 1반환하는 케이스 작성
   });
 
   describe('쿼리_스트링이_있다면', () => {
@@ -298,23 +330,228 @@ describe('fetch 테스트', () => {
     });
   });
 
-  describe('제품_후기_탐색', () => {
+  describe('제품_리뷰_탐색', () => {
     it('제품 페이지에서 해당 제품 후기(별점, 후기 수)를 찾아 반환한다.', async () => {
       const DOM = await 제품_상세_페이지_DOM_생성();
-      const [별점, 후기_수] = 제품_후기_탐색(DOM);
+      const [별점, 리뷰_수] = 제품_리뷰_탐색(DOM);
       const 별점_결과 = '4.7/5';
-      const 후기_수_결과 = '324 Reviews';
+      const 리뷰_수_결과 = '324 Reviews';
 
       expect(별점).toBe(별점_결과);
-      expect(후기_수).toBe(후기_수_결과);
+      expect(리뷰_수).toBe(리뷰_수_결과);
     });
 
-    // it('제품의 후기가 없을 경우 null 반환', async () => {
-    //   const 페이지 = await 페이지_찾기('제품_후기_무');
-    //   const [별점, 후기_수] = 스크랩.제품_후기_질의(페이지);
+    // TODO: 제품 후기가 없을 케이스 작성
+  });
 
-    //   expect(별점).toBeNull();
-    //   expect(후기_수).toBeNull();
-    // });
+  describe('제품_가격_탐색', () => {
+    it('제품 페이지에서 해당 제품 가격을 찾아 반환한다.', async () => {
+      const DOM = await 제품_상세_페이지_DOM_생성();
+      const 가격 = '$51.95';
+      const 결과 = 제품_가격_탐색(DOM);
+
+      expect(결과).toBe(가격);
+    });
+
+    // TODO: 제품 가격이 없는 케이스(단종) 작성
+  });
+
+  describe('제품_배송비_지불', () => {
+    it('제품 가격이 $20 미만이면 $5달러의 배송비가 든다.', async () => {
+      const 가격1 = '$51.95';
+      const 결과1 = 제품_배송비_지불(가격1);
+
+      expect(결과1).toBe('');
+
+      const 가격2 = '$19';
+      const 결과2 = 제품_배송비_지불(가격2);
+
+      expect(결과2).toBe('$5');
+    });
+  });
+
+  describe('제품_사용법_탐색', () => {
+    it('제품 페이지에서 해당 제품 사용법을 찾아 반환한다.', async () => {
+      const DOM = await 제품_상세_페이지_DOM_생성();
+      const 제품_사용법 =
+        'As a dietary supplement, adults take one (1) capsule with any meal, three (3) times daily or as directed by a healthcare provider. Do not exceed recommended dosage. Individual results may vary.';
+      const 결과 = 제품_사용법_탐색(DOM);
+
+      expect(결과).toBe(제품_사용법);
+    });
+  });
+
+  describe('제품_재고_상태_탐색', () => {
+    it('제품 페이지에서 해당 제품 재고 상태를 찾아 반환한다.', async () => {
+      const DOM = await 제품_상세_페이지_DOM_생성();
+      const 재고_상태 = 'In Stock';
+      const 결과 = 제품_재고_상태_탐색(DOM);
+
+      expect(결과).toBe(재고_상태);
+    });
+  });
+
+  describe('제품_정보_생성', () => {
+    it('제품 페이지에서 해당 제품의 정보들을 모아 객체로 반환한다.', async () => {
+      const DOM = await 제품_상세_페이지_DOM_생성();
+      const {이름, 링크, 가격, 배송비, 사용법, 별점, 리뷰_수, 재고_상태} = 제품_정보_생성(DOM);
+
+      const 예상_이름 =
+        '21st Century, Glucosamine / Chondroitin, Double Strength, 500 mg / 400 mg, 400 Easy to Swallow Capsules';
+      const 예상_링크 =
+        'https://www.iherb.com/pr/21st-century-glucosamine-chondroitin-double-strength-500-mg-400-mg-400-easy-to-swallow-capsules/9406';
+      const 예상_가격 = '$51.95';
+      const 예상_배송비 = '';
+      const 예상_사용법 =
+        'As a dietary supplement, adults take one (1) capsule with any meal, three (3) times daily or as directed by a healthcare provider. Do not exceed recommended dosage. Individual results may vary.';
+      const 예상_별점 = '4.7/5';
+      const 예상_리뷰_수 = '324 Reviews';
+      const 예상_재고_상태 = 'In Stock';
+
+      expect(이름).toBe(예상_이름);
+      expect(링크).toBe(예상_링크);
+      expect(가격).toBe(예상_가격);
+      expect(배송비).toBe(예상_배송비);
+      expect(사용법).toBe(예상_사용법);
+      expect(별점).toBe(예상_별점);
+      expect(리뷰_수).toBe(예상_리뷰_수);
+      expect(재고_상태).toBe(예상_재고_상태);
+    });
+  });
+
+  describe('파일_경로_생성', () => {
+    it('현재 폴더 위치 안에서 다운받을 파일의 경로를 반환한다.', () => {
+      const 폴더_경로 = '/products/';
+      const 파일_이름 = 'Products.xlsx';
+      const 결과 = 파일_경로_생성(폴더_경로, 파일_이름);
+      const 파일_경로 = 'P:\\Study\\js-scraper\\electron\\js\\domUtility/products/Products.xlsx';
+
+      expect(결과).toBe(파일_경로);
+    });
+  });
+
+  describe('엑셀 파일_경로_생성', () => {
+    it('현재 폴더 위치 안에서 다운받을 엑셀 파일의 경로를 반환한다.', () => {
+      const 결과 = 엑셀_파일_경로_생성();
+      const 파일_경로 = 'P:\\Study\\js-scraper\\electron\\js\\domUtility/products/Products.xlsx';
+
+      expect(결과).toBe(파일_경로);
+    });
+  });
+
+  describe('제품_정보_배열_생성', () => {
+    it('검색 결과 페이지 범위를 지정하고, 범위내의 제품들 정보를 배열로 변환한다.', async () => {
+      const URL = 'https://kr.iherb.com/c/21st-century-health-care';
+      const 페이지_범위 = {
+        시작_페이지_번호: 1,
+        끝_페이지_번호: 1
+      };
+      const 페이지_제품_정보_배열 = await 제품_정보_배열_생성(URL, 페이지_범위);
+      const [첫번째_제품] = 페이지_제품_정보_배열;
+      const {이름, 링크, 가격, 배송비, 사용법, 별점, 리뷰_수, 재고_상태} = 첫번째_제품;
+
+      const 예상_이름 =
+        '21st Century, Glucosamine / Chondroitin, Double Strength, 500 mg / 400 mg, 400 Easy to Swallow Capsules';
+      const 예상_링크 =
+        'https://www.iherb.com/pr/21st-century-glucosamine-chondroitin-double-strength-500-mg-400-mg-400-easy-to-swallow-capsules/9406';
+      const 예상_가격 = '$51.95';
+      const 예상_배송비 = '';
+      const 예상_사용법 =
+        'As a dietary supplement, adults take one (1) capsule with any meal, three (3) times daily or as directed by a healthcare provider. Do not exceed recommended dosage. Individual results may vary.';
+      const 예상_별점 = '4.7/5';
+      const 예상_리뷰_수 = '324 Reviews';
+      const 예상_재고_상태 = 'In Stock';
+
+      expect(이름).toBe(예상_이름);
+      expect(링크).toBe(예상_링크);
+      expect(가격).toBe(예상_가격);
+      expect(배송비).toBe(예상_배송비);
+      expect(사용법).toBe(예상_사용법);
+      expect(별점).toBe(예상_별점);
+      expect(리뷰_수).toBe(예상_리뷰_수);
+      expect(재고_상태).toBe(예상_재고_상태);
+    });
+  });
+
+  describe('워크_시트_칼럼_배열_생성', () => {
+    it('칼럼 배열을 받아 워크 시트 칼럼 객체 배열을 반환한다.', () => {
+      const 칼럼_배열 = ['제품 ID', '이름'];
+      const 워크_시트_칼럼_배열 = 워크_시트_칼럼_배열_생성(칼럼_배열);
+      const [첫번째_칼럼, 두번째_칼럼] = 워크_시트_칼럼_배열;
+      const 예상_첫번째_칼럼 = {
+        header: '제품 ID',
+        key: '제품_ID'
+      };
+      const 예상_두번째_칼럼 = {
+        header: '이름',
+        key: '이름'
+      };
+
+      expect(첫번째_칼럼).toEqual(예상_첫번째_칼럼);
+      expect(두번째_칼럼).toEqual(예상_두번째_칼럼);
+    });
+  });
+
+  describe('워크_시트_제품_칼럼_배열_생성', () => {
+    it('제품 칼럼 배열을 받아 워크 시트 제품 칼럼 객체 배열을 반환한다.', () => {
+      const 워크_시트_제품_칼럼_배열 = 워크_시트_제품_칼럼_배열_생성();
+      const 예상_배열 = [
+        {header: '제품 ID', key: '제품_ID'},
+        {header: '링크', key: '링크'},
+        {header: '이름', key: '이름'},
+        {header: '가격', key: '가격'},
+        {header: '배송비', key: '배송비'},
+        {header: '사용법', key: '사용법'},
+        {header: '별점', key: '별점'},
+        {header: '리뷰 수', key: '리뷰_수'},
+        {header: '재고 상태', key: '재고_상태'}
+      ];
+
+      워크_시트_제품_칼럼_배열.forEach((칼럼, 인덱스) => {
+        expect(칼럼).toEqual(예상_배열[인덱스]);
+      });
+    });
+  });
+
+  describe('워크_시트_생성', () => {
+    it('워크 북에 워크 시트를 추가한다.', () => {
+      const 워크_북 = new ExcelJS.Workbook();
+      const 워크_북_스파이 = jest.spyOn(워크_북, 'addWorksheet');
+      const 워크_시트 = 워크_시트_생성(워크_북);
+
+      expect(워크_북_스파이).toBeCalledWith('My Products');
+      expect(워크_시트).toBeTruthy();
+    });
+  });
+
+  describe('워크_시트_설정', () => {
+    it('워크 북의 워크 시트 칼럼들을 설정한다.', () => {
+      const 제품 = {
+        제품_ID: '',
+        링크: 'https://www.iherb.com/pr/21st-century-glucosamine-chondroitin-double-strength-500-mg-400-mg-400-easy-to-swallow-capsules/9406',
+        이름: '21st Century, Glucosamine / Chondroitin, Double Strength, 500 mg / 400 mg, 400 Easy to Swallow Capsules',
+        가격: '$51.95',
+        배송비: '',
+        사용법:
+          'As a dietary supplement, adults take one (1) capsule with any meal, three (3) times daily or as directed by a healthcare provider. Do not exceed recommended dosage. Individual results may vary.',
+        별점: '4.7/5',
+        리뷰_수: '324 Reviews',
+        재고_상태: 'In Stock'
+      };
+      const 제품_정보_배열 = [제품];
+      const 워크_북 = new ExcelJS.Workbook();
+      const 워크_시트 = 워크_시트_생성(워크_북);
+      const 워크_시트_스파이 = jest.spyOn(워크_시트, 'addRow');
+
+      워크_시트_설정(워크_시트, 제품_정보_배열);
+
+      const 칼럼_배열 = Object.keys(제품);
+      const {columns: 워크_시트_칼럼_배열} = 워크_시트;
+
+      워크_시트_칼럼_배열.forEach((워크_시트_칼럼, 인덱스) => {
+        expect(워크_시트_칼럼['_key']).toBe(칼럼_배열[인덱스]);
+      });
+      expect(워크_시트_스파이).toBeCalledTimes(1);
+    });
   });
 });

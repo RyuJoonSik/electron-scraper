@@ -1,4 +1,4 @@
-import 앱 from './컴포넌트들/앱/앱';
+import 앱 from './Components/App/App';
 
 const 앱_컴포넌트 = new 앱(document.querySelector('#app'));
 

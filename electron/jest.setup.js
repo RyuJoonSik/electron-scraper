@@ -1,4 +1,4 @@
-import 페이지 from './데이터/목업_페이지';
+import 페이지 from './data/mockupPage.js';
 
 const mockFetch = (URL) => {
   try {
@@ -116,13 +116,13 @@ const mockFetch = (URL) => {
   }
 };
 
-jest.mock('exceljs');
+// jest.mock('exceljs');
 jest.mock('fs');
 
-require('exceljs').Workbook.mockImplementation(() => ({
-  addWorksheet: () => ({columns: [], addRow: () => {}}),
-  xlsx: {writeFile: () => {}}
-}));
+// require('exceljs').Workbook.mockImplementation(() => ({
+//   addWorksheet: () => ({columns: [], addRow: () => {}}),
+//   xlsx: {writeFile: () => {}}
+// }));
 
 beforeAll(() => {
   global.fetch = mockFetch;

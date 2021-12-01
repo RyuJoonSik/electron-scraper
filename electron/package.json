@@ -1,8 +1,10 @@
 {
   "name": "electron-app",
-  "version": "1.0.0",
-  "description": "My electron app",
+  "version": "1.1.0",
+  "description": "electron scraper",
   "main": "main.js",
+  "author": "J8rl_Chik",
+  "license": "MIT",
   "scripts": {
     "import": "electron-forge import",
     "start": "electron-forge start",
@@ -15,8 +17,6 @@
     "make": "electron-forge make"
   },
   "keywords": [],
-  "author": "J8rl_Chic",
-  "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.15.5",
     "@babel/preset-env": "^7.15.6",

@@ -106,9 +106,102 @@ export function 제품_이미지_URL_배열_탐색(페이지, 선택자 = '.lazy
     const 이미지_URL_배열 = 이미지_배열.map(({ dataset: { lazyload } }) => lazyload);
     return 이미지_URL_배열;
 }
-export function 제품_후기_탐색(페이지, 선택자 = '#product-summary-header .stars') {
+export function 제품_리뷰_탐색(페이지, 선택자 = '#product-summary-header .stars') {
     const 요소 = 요소_찾기(페이지, 선택자);
-    const { title: 후기 } = 요소;
-    const [별점, 후기_수] = 후기.split(' - ');
-    return [별점, 후기_수];
+    const { title: 리뷰 } = 요소;
+    const [별점, 리뷰_수] = 리뷰.split(' - ');
+    return [별점, 리뷰_수];
+}
+export function 제품_가격_탐색(페이지, 선택자 = '#price') {
+    const 요소 = 요소_찾기(페이지, 선택자);
+    const 가격 = 텍스트_컨텐츠_추출(요소);
+    return 가격;
+}
+export function 제품_배송비_지불(제품_가격) {
+    const 가격 = Number(제품_가격.slice(1));
+    const 배송비_무료_금액 = 20; // $20
+    let 배송비 = '';
+    if (가격 < 배송비_무료_금액) {
+        배송비 = '$5';
+    }
+    return 배송비;
+}
+export function 제품_사용법_탐색(페이지, 선택자 = '.prodOverviewDetail') {
+    const 요소_리스트 = 요소_리스트_찾기(페이지, 선택자);
+    const [제품_사용법_문단] = 요소_리스트;
+    const 제품_사용법 = 텍스트_컨텐츠_추출(제품_사용법_문단);
+    return 제품_사용법;
+}
+export function 제품_재고_상태_탐색(페이지, 선택자 = '#stock-status > *:first-child') {
+    const 요소 = 요소_찾기(페이지, 선택자);
+    const 재고_상태 = 텍스트_컨텐츠_추출(요소);
+    return 재고_상태;
+}
+export function 제품_정보_생성(페이지) {
+    const 이름 = 제품_이름_탐색(페이지);
+    const 가격 = 제품_가격_탐색(페이지);
+    const 배송비 = 제품_배송비_지불(가격);
+    const [별점, 리뷰_수] = 제품_리뷰_탐색(페이지);
+    const 제품 = {
+        제품_ID: 이름,
+        이름,
+        가격,
+        배송비,
+        별점,
+        리뷰_수,
+        링크: 제품_URL_탐색(페이지),
+        사용법: 제품_사용법_탐색(페이지),
+        재고_상태: 제품_재고_상태_탐색(페이지)
+    };
+    return 제품;
+}
+export function 파일_경로_생성(폴더_경로, 파일_이름) {
+    const 프로젝트_루트 = __dirname;
+    const 파일_경로 = 프로젝트_루트 + 폴더_경로 + 파일_이름;
+    return 파일_경로;
+}
+export function 엑셀_파일_경로_생성(폴더_경로 = '/products/', 파일_이름 = 'Products.xlsx') {
+    const 파일_경로 = 파일_경로_생성(폴더_경로, 파일_이름);
+    return 파일_경로;
+}
+export async function 제품_정보_배열_생성(기본_URL, { 시작_페이지_번호, 끝_페이지_번호 }) {
+    const URL = 쿼리_스트링이_있다면(기본_URL) ? 기본_URL + '&p=' : 기본_URL + '?p=';
+    const 페이지_번호_배열 = 페이지_번호_배열_생성(시작_페이지_번호, 끝_페이지_번호);
+    const URL_배열 = 페이지_번호_배열.map((페이지_번호) => URL + 페이지_번호);
+    const DOM_배열 = await URL_배열_DOM_파싱(URL_배열);
+    const 제품_URL_배열 = DOM_배열.map((DOM) => 페이지_제품_URL_배열_탐색(DOM)).flat();
+    const 제품_DOM_배열 = await URL_배열_DOM_파싱(제품_URL_배열);
+    const 제품_정보_배열 = 제품_DOM_배열.map((제품_DOM) => 제품_정보_생성(제품_DOM));
+    return 제품_정보_배열;
+}
+export function 워크_시트_칼럼_배열_생성(칼럼_배열) {
+    const 워크_시트_칼럼_배열 = 칼럼_배열.map((칼럼) => {
+        const 헤더 = 칼럼;
+        const 키 = 칼럼.replace(/\s/g, '_');
+        const 칼럼_객체 = {
+            header: 헤더,
+            key: 키
+        };
+        return 칼럼_객체;
+    });
+    return 워크_시트_칼럼_배열;
+}
+export function 워크_시트_제품_칼럼_배열_생성(제품_칼럼_배열 = ['제품 ID', '링크', '이름', '가격', '배송비', '사용법', '별점', '리뷰 수', '재고 상태']) {
+    const 워크_시트_칼럼_배열 = 워크_시트_칼럼_배열_생성(제품_칼럼_배열);
+    return 워크_시트_칼럼_배열;
+}
+export function 워크_시트_생성(워크_북, 워크_시트_이름 = 'My Products') {
+    const 워크_시트 = 워크_북.addWorksheet(워크_시트_이름);
+    return 워크_시트;
+}
+export function 워크_시트_설정(워크_시트, 제품_정보_배열) {
+    워크_시트.columns = 워크_시트_제품_칼럼_배열_생성();
+    제품_정보_배열.forEach((제품_정보) => {
+        워크_시트.addRow(제품_정보);
+    });
+}
+export function 인풋_값_반환(부모, 선택자) {
+    const 인풋 = 요소_찾기(부모, 선택자);
+    const 값 = 요소_값_반환(인풋);
+    return 값;
 }

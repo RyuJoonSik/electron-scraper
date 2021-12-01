@@ -4,13 +4,13 @@ module.exports = {
   entry: './index.js',
   externals: {
     fs: 'commonjs fs',
-    path: 'commonjs path',
+    path: 'commonjs path'
   },
   target: 'node',
   output: {
     filename: 'app.js',
-    path: path.resolve(__dirname),
+    path: path.resolve(__dirname)
   },
-  // mode: 'production',
-  mode: 'development',
+  mode: 'production'
+  // mode: 'development',
 };
