@@ -117,7 +117,7 @@ const mockFetch = (URL) => {
 };
 
 // jest.mock('exceljs');
-jest.mock('fs');
+// jest.mock('fs');
 
 // require('exceljs').Workbook.mockImplementation(() => ({
 //   addWorksheet: () => ({columns: [], addRow: () => {}}),

@@ -54,6 +54,12 @@
         <p class="quiet">
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
+        <template id="filterTemplate">
+            <div class="quiet">
+                Filter:
+                <input oninput="onInput()" type="search" id="fileSearch">
+            </div>
+        </template>
     </div>
     <div class='status-line low'></div>
     <pre><table class="coverage">
@@ -172,9 +178,7 @@
 <a name='L113'></a><a href='#L113'>113</a>
 <a name='L114'></a><a href='#L114'>114</a>
 <a name='L115'></a><a href='#L115'>115</a>
-<a name='L116'></a><a href='#L116'>116</a>
-<a name='L117'></a><a href='#L117'>117</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L116'></a><a href='#L116'>116</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -289,13 +293,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import * as ExcelJS from 'exceljs';
-import 컴포넌트 from '../Component/Component.js';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import 컴포넌트 from '../Component/Component.js';
 import 헤더 from '../Header/Header.js';
 // import 스크랩 from '../../js/scrap';
 import { mkdirSync, writeFileSync } from 'fs';
 // import 성분_배열 from '../../data/ingredients';
-import { 요소_찾기, DOM_생성, 마지막_페이지_번호_탐색, 엑셀_파일_경로_생성, 제품_정보_배열_생성, 워크_시트_생성, 워크_시트_설정, 제품_이미지_URL_배열_탐색, URL_배열_DOM_파싱 } from '../../js/domUtility/domUtility';
+import { 요소_찾기, DOM_생성, 마지막_페이지_번호_탐색, 엑셀_파일_경로_생성, 제품_정보_배열_생성, 워크시트_생성, 워크시트_설정, 제품_이미지_URL_배열_탐색, URL_배열_DOM_파싱, 워크북_생성, 읽은_엑셀_파일_워크북_생성 } from '../../js/domUtility/domUtility';
 export default class 앱 extends 컴포넌트 {
     상태 = {
         URL: '',
@@ -352,20 +355,20 @@ export default class 앱 extends 컴포넌트 {
 <span class="fstat-no" title="function not covered" >    as</span>ync 엑셀_다운로드(시작_페이지_번호, 끝_페이지_번호) {
         const { URL: 기본_URL } = <span class="cstat-no" title="statement not covered" >this.상태;</span>
         const 제품_정보_배열 = <span class="cstat-no" title="statement not covered" >await 제품_정보_배열_생성(기본_URL, { 시작_페이지_번호, 끝_페이지_번호 });</span>
-        const 워크_북 = <span class="cstat-no" title="statement not covered" >new ExcelJS.Workbook();</span>
-        const 워크_시트 = <span class="cstat-no" title="statement not covered" >워크_시트_생성(워크_북);</span>
-<span class="cstat-no" title="statement not covered" >        워크_시트_설정(워크_시트, 제품_정보_배열);</span>
+        const 워크북 = <span class="cstat-no" title="statement not covered" >워크북_생성();</span>
+        const 워크시트 = <span class="cstat-no" title="statement not covered" >워크시트_생성(워크북);</span>
+<span class="cstat-no" title="statement not covered" >        워크시트_설정(워크시트, 제품_정보_배열);</span>
         const 엑셀_파일_경로 = <span class="cstat-no" title="statement not covered" >엑셀_파일_경로_생성();</span>
-<span class="cstat-no" title="statement not covered" >        await 워크_북.xlsx.writeFile(엑셀_파일_경로);</span>
+<span class="cstat-no" title="statement not covered" >        await 워크북.xlsx.writeFile(엑셀_파일_경로);</span>
     }
 <span class="fstat-no" title="function not covered" >    as</span>ync 이미지_다운로드() {
         const 엑셀_파일_경로 = <span class="cstat-no" title="statement not covered" >엑셀_파일_경로_생성();</span>
-        const 워크_북 = <span class="cstat-no" title="statement not covered" >new ExcelJS.Workbook();</span>
-        const 제품_워크_북 = <span class="cstat-no" title="statement not covered" >await 워크_북.xlsx.readFile(엑셀_파일_경로);</span>
-        const 제품_워크_시트 = <span class="cstat-no" title="statement not covered" >제품_워크_북.getWorksheet('My Products');</span>
+        const 워크북 = <span class="cstat-no" title="statement not covered" >워크북_생성();</span>
+        const 제품_워크북 = <span class="cstat-no" title="statement not covered" >await 읽은_엑셀_파일_워크북_생성(워크북, 엑셀_파일_경로);</span>
+        const 제품_워크시트 = <span class="cstat-no" title="statement not covered" >제품_워크북.getWorksheet('My Products');</span>
         const 제품_이름_배열 = <span class="cstat-no" title="statement not covered" >[];</span>
         const 제품_URL_배열 = <span class="cstat-no" title="statement not covered" >[];</span>
-<span class="cstat-no" title="statement not covered" >        제품_워크_시트.eachRow(<span class="fstat-no" title="function not covered" >(행</span>, 행_번호) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        제품_워크시트.eachRow(<span class="fstat-no" title="function not covered" >(행</span>, 행_번호) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >            if (행_번호 &gt; 1) {</span>
                 const 제품_이름 = <span class="cstat-no" title="statement not covered" >행.getCell(1).value;</span>
                 const 제품_URL = <span class="cstat-no" title="statement not covered" >행.getCell(2).value;</span>
@@ -412,7 +415,7 @@ export default class 앱 extends 컴포넌트 {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Wed Dec 01 2021 01:41:45 GMT+0900 (대한민국 표준시)
+                at Fri Dec 10 2021 01:41:24 GMT+0900 (대한민국 표준시)
             </div>
         </div>
         <script src="../../prettify.js"></script>

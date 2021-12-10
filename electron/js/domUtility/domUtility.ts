@@ -106,8 +106,8 @@ export function 마지막_페이지_번호_탐색(DOM: Document, 선택자 = '.p
   return Number(마지막_페이지_번호_텍스트);
 }
 
-export function 요소_리스트_찾기(부모: HTMLElement | Document, 선택자: string): NodeListOf<Element> {
-  const 요소_리스트 = 부모.querySelectorAll(선택자);
+export function 요소_리스트_찾기(부모: HTMLElement | Document, 선택자: string): Element[] {
+  const 요소_리스트 = Array.from(부모.querySelectorAll(선택자));
 
   return 요소_리스트;
 }
@@ -266,8 +266,8 @@ export async function 제품_정보_배열_생성(기본_URL: string, {시작_�
   return 제품_정보_배열;
 }
 
-export function 워크_시트_칼럼_배열_생성(칼럼_배열: string[]) {
-  const 워크_시트_칼럼_배열 = 칼럼_배열.map((칼럼) => {
+export function 워크시트_칼럼_배열_생성(칼럼_배열: string[]) {
+  const 워크시트_칼럼_배열 = 칼럼_배열.map((칼럼) => {
     const 헤더 = 칼럼;
     const 키 = 칼럼.replace(/\s/g, '_');
     const 칼럼_객체 = {
@@ -278,28 +278,28 @@ export function 워크_시트_칼럼_배열_생성(칼럼_배열: string[]) {
     return 칼럼_객체;
   });
 
-  return 워크_시트_칼럼_배열;
+  return 워크시트_칼럼_배열;
 }
 
-export function 워크_시트_제품_칼럼_배열_생성(
+export function 워크시트_제품_칼럼_배열_생성(
   제품_칼럼_배열 = ['제품 ID', '링크', '이름', '가격', '배송비', '사용법', '별점', '리뷰 수', '재고 상태']
 ) {
-  const 워크_시트_칼럼_배열 = 워크_시트_칼럼_배열_생성(제품_칼럼_배열);
+  const 워크시트_칼럼_배열 = 워크시트_칼럼_배열_생성(제품_칼럼_배열);
 
-  return 워크_시트_칼럼_배열;
+  return 워크시트_칼럼_배열;
 }
 
-export function 워크_시트_생성(워크_북: ExcelJS.Workbook, 워크_시트_이름 = 'My Products') {
-  const 워크_시트 = 워크_북.addWorksheet(워크_시트_이름);
+export function 워크시트_생성(워크북: ExcelJS.Workbook, 워크시트_이름 = 'My Products') {
+  const 워크시트 = 워크북.addWorksheet(워크시트_이름);
 
-  return 워크_시트;
+  return 워크시트;
 }
 
-export function 워크_시트_설정(워크_시트: ExcelJS.Worksheet, 제품_정보_배열: 제품[]) {
-  워크_시트.columns = 워크_시트_제품_칼럼_배열_생성();
+export function 워크시트_설정(워크시트: ExcelJS.Worksheet, 제품_정보_배열: 제품[]) {
+  워크시트.columns = 워크시트_제품_칼럼_배열_생성();
 
   제품_정보_배열.forEach((제품_정보) => {
-    워크_시트.addRow(제품_정보);
+    워크시트.addRow(제품_정보);
   });
 }
 
@@ -308,4 +308,28 @@ export function 인풋_값_반환(부모: HTMLElement | Document, 선택자: str
   const 값 = 요소_값_반환(인풋);
 
   return 값;
+}
+
+export function 워크북_생성() {
+  const 워크북 = new ExcelJS.Workbook();
+
+  return 워크북;
+}
+
+export async function 읽은_엑셀_파일_워크북_생성(워크북: ExcelJS.Workbook, 엑셀_파일_경로: string) {
+  const 제품_워크북 = await 워크북.xlsx.readFile(엑셀_파일_경로);
+
+  return 제품_워크북;
+}
+
+export function 워크_시트_추출(워크_북: ExcelJS.Workbook, 워크_시트_이름: string = 'My Products') {
+  const 워크_시트 = 워크_북.getWorksheet(워크_시트_이름);
+
+  return 워크_시트;
+}
+
+export function 엑셀_행_셀_값_추출(행: ExcelJS.Row, 행_식별자: number | string) {
+  const 셀 = 행.getCell(행_식별자);
+
+  return 셀;
 }

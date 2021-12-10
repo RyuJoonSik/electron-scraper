@@ -8,7 +8,7 @@
   "scripts": {
     "start": "electron-forge start",
     "test": "jest",
-    "webpack": "webpack --watch",
+    "wp": "webpack --watch",
     "ts": "tsc -w",
     "package": "electron-forge package",
     "make": "electron-forge make"

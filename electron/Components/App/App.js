@@ -1,10 +1,9 @@
-import * as ExcelJS from 'exceljs';
 import 컴포넌트 from '../Component/Component.js';
 import 헤더 from '../Header/Header.js';
 // import 스크랩 from '../../js/scrap';
 import { mkdirSync, writeFileSync } from 'fs';
 // import 성분_배열 from '../../data/ingredients';
-import { 요소_찾기, DOM_생성, 마지막_페이지_번호_탐색, 엑셀_파일_경로_생성, 제품_정보_배열_생성, 워크_시트_생성, 워크_시트_설정, 제품_이미지_URL_배열_탐색, URL_배열_DOM_파싱 } from '../../js/domUtility/domUtility';
+import { 요소_찾기, DOM_생성, 마지막_페이지_번호_탐색, 엑셀_파일_경로_생성, 제품_정보_배열_생성, 워크시트_생성, 워크시트_설정, 제품_이미지_URL_배열_탐색, URL_배열_DOM_파싱, 워크북_생성, 읽은_엑셀_파일_워크북_생성, 워크_시트_추출 } from '../../js/domUtility/domUtility';
 export default class 앱 extends 컴포넌트 {
     상태 = {
         URL: '',
@@ -61,20 +60,20 @@ export default class 앱 extends 컴포넌트 {
     async 엑셀_다운로드(시작_페이지_번호, 끝_페이지_번호) {
         const { URL: 기본_URL } = this.상태;
         const 제품_정보_배열 = await 제품_정보_배열_생성(기본_URL, { 시작_페이지_번호, 끝_페이지_번호 });
-        const 워크_북 = new ExcelJS.Workbook();
-        const 워크_시트 = 워크_시트_생성(워크_북);
-        워크_시트_설정(워크_시트, 제품_정보_배열);
+        const 워크북 = 워크북_생성();
+        const 워크시트 = 워크시트_생성(워크북);
+        워크시트_설정(워크시트, 제품_정보_배열);
         const 엑셀_파일_경로 = 엑셀_파일_경로_생성();
-        await 워크_북.xlsx.writeFile(엑셀_파일_경로);
+        await 워크북.xlsx.writeFile(엑셀_파일_경로);
     }
     async 이미지_다운로드() {
         const 엑셀_파일_경로 = 엑셀_파일_경로_생성();
-        const 워크_북 = new ExcelJS.Workbook();
-        const 제품_워크_북 = await 워크_북.xlsx.readFile(엑셀_파일_경로);
-        const 제품_워크_시트 = 제품_워크_북.getWorksheet('My Products');
+        const 워크북 = 워크북_생성();
+        const 제품_워크북 = await 읽은_엑셀_파일_워크북_생성(워크북, 엑셀_파일_경로);
+        const 제품_워크시트 = 워크_시트_추출(제품_워크북);
         const 제품_이름_배열 = [];
         const 제품_URL_배열 = [];
-        제품_워크_시트.eachRow((행, 행_번호) => {
+        제품_워크시트.eachRow((행, 행_번호) => {
             if (행_번호 > 1) {
                 const 제품_이름 = 행.getCell(1).value;
                 const 제품_URL = 행.getCell(2).value;
