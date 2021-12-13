@@ -37,7 +37,9 @@ import {
   읽은_엑셀_파일_워크북_생성,
   워크북_생성,
   워크_시트_추출,
-  엑셀_행_셀_값_추출
+  엑셀_행_셀_값_추출,
+  이미지_생성,
+  캔버스_생성
 } from './domUtility';
 import 목업_페이지 from '../../data/mockupPage.js';
 import * as ExcelJS from 'exceljs';
@@ -602,16 +604,33 @@ describe('워크_시트_추출', () => {
   });
 });
 
-describe('엑셀_행_셀_값_추출', () => {
-  it('엑셀 행의 셀 값을 추출한다.', async () => {
-    const 워크북 = new ExcelJS.Workbook();
-    const 엑셀_파일_경로 = 'data/Products.xlsx';
-    const 제품_시트 = await 엑셀_워크시트_목업_생성();
-    // const 엑셀_파일_경로 = './Products.xlsx';
-    // console.log();
-    console.log(제품_시트);
+// describe('엑셀_행_셀_값_추출', () => {
+//   it('엑셀 행의 셀 값을 추출한다.', async () => {
+//     const 제품_시트 = await 엑셀_워크시트_목업_생성();
+//     제품_시트.
+//     // const 엑셀_파일_경로 = './Products.xlsx';
+//     // console.log();
+//     // console.log(제품_시트);
 
-    // const 워크시트 = await 엑셀_워크시트_목업_생성();
-    // console.log(__dirname);
+//     // const 워크시트 = await 엑셀_워크시트_목업_생성();
+//     // console.log(__dirname);
+//   });
+// });
+
+describe('이미지_생성', () => {
+  it('URL을 이미지의 src에 로드 시킨 후 반환한다.', async () => {
+    const 이미지_URL = 'https://s3.images-iherb.com/cen/cen28026/y/8.jpg';
+    const 이미지 = await 이미지_생성(이미지_URL);
+
+    expect(이미지.src).toBe(이미지_URL);
+  });
+});
+
+describe('캔버스_생성', () => {
+  it('높이, 너비에 맞춘 캔버스를 생성 후 반환한다.', async () => {
+    const 캔버스 = 캔버스_생성();
+
+    expect(캔버스.width).toBe(1000);
+    expect(캔버스.height).toBe(1000);
   });
 });

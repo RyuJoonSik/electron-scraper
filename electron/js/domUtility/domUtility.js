@@ -222,3 +222,15 @@ export function 엑셀_행_셀_값_추출(행, 행_식별자) {
     const 셀 = 행.getCell(행_식별자);
     return 셀;
 }
+export async function 이미지_생성(URL) {
+    const 이미지 = document.createElement('img');
+    이미지.src = URL;
+    await 이미지.decode();
+    return 이미지;
+}
+export function 캔버스_생성(높이 = 1000, 너비 = 1000) {
+    const 캔버스 = document.createElement('canvas');
+    캔버스.height = 높이;
+    캔버스.width = 너비;
+    return 캔버스;
+}

@@ -3,7 +3,7 @@ import 헤더 from '../Header/Header.js';
 // import 스크랩 from '../../js/scrap';
 import { mkdirSync, writeFileSync } from 'fs';
 // import 성분_배열 from '../../data/ingredients';
-import { 요소_찾기, DOM_생성, 마지막_페이지_번호_탐색, 엑셀_파일_경로_생성, 제품_정보_배열_생성, 워크시트_생성, 워크시트_설정, 제품_이미지_URL_배열_탐색, URL_배열_DOM_파싱, 워크북_생성, 읽은_엑셀_파일_워크북_생성, 워크_시트_추출 } from '../../js/domUtility/domUtility';
+import { 요소_찾기, DOM_생성, 마지막_페이지_번호_탐색, 엑셀_파일_경로_생성, 제품_정보_배열_생성, 워크시트_생성, 워크시트_설정, 제품_이미지_URL_배열_탐색, 워크북_생성, 읽은_엑셀_파일_워크북_생성, 워크_시트_추출, 이미지_생성, 캔버스_생성 } from '../../js/domUtility/domUtility';
 export default class 앱 extends 컴포넌트 {
     상태 = {
         URL: '',
@@ -71,45 +71,57 @@ export default class 앱 extends 컴포넌트 {
         const 워크북 = 워크북_생성();
         const 제품_워크북 = await 읽은_엑셀_파일_워크북_생성(워크북, 엑셀_파일_경로);
         const 제품_워크시트 = 워크_시트_추출(제품_워크북);
-        const 제품_이름_배열 = [];
-        const 제품_URL_배열 = [];
-        제품_워크시트.eachRow((행, 행_번호) => {
-            if (행_번호 > 1) {
-                const 제품_이름 = 행.getCell(1).value;
-                const 제품_URL = 행.getCell(2).value;
-                제품_이름_배열.push(제품_이름);
-                제품_URL_배열.push(제품_URL);
-            }
-        });
-        const 제품_DOM_배열 = await URL_배열_DOM_파싱(제품_URL_배열);
-        const 제품_이미지_URL_배열 = 제품_DOM_배열.map((제품_DOM) => 제품_이미지_URL_배열_탐색(제품_DOM));
-        const 제품_이미지_URL_객체 = 제품_이름_배열.reduce((객체, 제품_이름, 인덱스) => {
-            객체[제품_이름] = 제품_이미지_URL_배열[인덱스];
-            return 객체;
-        }, {});
-        const 제품_이름_이미지_URL_배열 = Object.entries(제품_이미지_URL_객체);
-        for await (let [제품_이름, 제품_이미지_URL_배열] of 제품_이름_이미지_URL_배열) {
-            // console.log(제품_이름);
+        const 제품_행_배열 = 제품_워크시트.getRows(2, 제품_워크시트.rowCount - 1);
+        for await (const 제품_행 of 제품_행_배열) {
+            const 제품_이름 = 제품_행.getCell(1).value;
+            const 제품_URL = 제품_행.getCell(2).value;
+            const 제품_DOM = await DOM_생성(제품_URL);
+            const 제품_이미지_URL_배열 = 제품_이미지_URL_배열_탐색(제품_DOM);
+            console.log(제품_이미지_URL_배열);
             const 폴더_경로 = `${__dirname}/products/${제품_이름}/`;
             mkdirSync(폴더_경로);
-            let 사진_개수 = 1;
+            let 사진_번호 = 1;
             for await (let 제품_이미지_URL of 제품_이미지_URL_배열) {
-                const 파일_이름 = 제품_이름 + 사진_개수++ + '.jpg';
-                const 이미지 = document.createElement('img');
-                이미지.src = 제품_이미지_URL;
-                await 이미지.decode();
-                const 캔버스 = document.createElement('canvas');
-                const 길이 = 1000;
-                캔버스.height = 길이;
-                캔버스.width = 길이;
+                const 파일_이름 = 제품_이름 + 사진_번호++ + '.jpg';
+                const 이미지 = await 이미지_생성(제품_이미지_URL);
+                const 캔버스 = 캔버스_생성();
                 const ctx = 캔버스.getContext('2d');
-                ctx.clearRect(0, 0, 길이, 길이);
-                ctx.drawImage(이미지, 0, 0, 길이, 길이);
+                ctx.clearRect(0, 0, 1000, 1000);
+                ctx.drawImage(이미지, 0, 0, 1000, 1000);
                 const 데이터_URI = 캔버스.toDataURL();
                 const 데이터 = 데이터_URI.replace(/^data:image\/\w+;base64,/, '');
                 const 버퍼 = Buffer.from(데이터, 'base64');
                 writeFileSync(폴더_경로 + 파일_이름, 버퍼);
+                console.log(파일_이름);
             }
         }
+        // const 제품_이미지_URL_객체 = 제품_이름_배열.reduce((객체: {[key: string]: any[]}, 제품_이름, 인덱스) => {
+        //   객체[제품_이름] = 제품_이미지_URL_배열[인덱스];
+        //   return 객체;
+        // }, {});
+        // const 제품_이름_이미지_URL_배열 = Object.entries(제품_이미지_URL_객체);
+        // for await (let [제품_이름, 제품_이미지_URL_배열] of 제품_이름_이미지_URL_배열) {
+        //   // console.log(제품_이름);
+        //   const 폴더_경로 = `${__dirname}/products/${제품_이름}/`;
+        //   mkdirSync(폴더_경로);
+        //   let 사진_개수 = 1;
+        //   for await (let 제품_이미지_URL of 제품_이미지_URL_배열) {
+        //     const 파일_이름 = 제품_이름 + 사진_개수++ + '.jpg';
+        //     const 이미지 = document.createElement('img');
+        //     이미지.src = 제품_이미지_URL;
+        //     await 이미지.decode();
+        //     const 캔버스 = document.createElement('canvas');
+        //     const 길이 = 1000;
+        //     캔버스.height = 길이;
+        //     캔버스.width = 길이;
+        //     const ctx = 캔버스.getContext('2d') as CanvasRenderingContext2D;
+        //     ctx.clearRect(0, 0, 길이, 길이);
+        //     ctx.drawImage(이미지, 0, 0, 길이, 길이);
+        //     const 데이터_URI = 캔버스.toDataURL();
+        //     const 데이터 = 데이터_URI.replace(/^data:image\/\w+;base64,/, '');
+        //     const 버퍼 = Buffer.from(데이터, 'base64');
+        //     writeFileSync(폴더_경로 + 파일_이름, 버퍼);
+        //   }
+        // }
     }
 }

@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">98.55% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>128/128</span>
+                <span class='fraction'>136/138</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">94.44% </span>
+                <span class="strong">95% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>17/18</span>
+                <span class='fraction'>19/20</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">98.07% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>49/49</span>
+                <span class='fraction'>51/52</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">98.46% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>120/120</span>
+                <span class='fraction'>128/130</span>
             </div>
         
             
@@ -283,7 +283,23 @@
 <a name='L218'></a><a href='#L218'>218</a>
 <a name='L219'></a><a href='#L219'>219</a>
 <a name='L220'></a><a href='#L220'>220</a>
-<a name='L221'></a><a href='#L221'>221</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L221'></a><a href='#L221'>221</a>
+<a name='L222'></a><a href='#L222'>222</a>
+<a name='L223'></a><a href='#L223'>223</a>
+<a name='L224'></a><a href='#L224'>224</a>
+<a name='L225'></a><a href='#L225'>225</a>
+<a name='L226'></a><a href='#L226'>226</a>
+<a name='L227'></a><a href='#L227'>227</a>
+<a name='L228'></a><a href='#L228'>228</a>
+<a name='L229'></a><a href='#L229'>229</a>
+<a name='L230'></a><a href='#L230'>230</a>
+<a name='L231'></a><a href='#L231'>231</a>
+<a name='L232'></a><a href='#L232'>232</a>
+<a name='L233'></a><a href='#L233'>233</a>
+<a name='L234'></a><a href='#L234'>234</a>
+<a name='L235'></a><a href='#L235'>235</a>
+<a name='L236'></a><a href='#L236'>236</a>
+<a name='L237'></a><a href='#L237'>237</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -503,6 +519,22 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import * as ExcelJS from 'exceljs';
 export function 특정_요소이면(타겟_요소, 비교_요소들) {
     return 비교_요소들.some((요소) =&gt; 타겟_요소 instanceof 요소);
@@ -563,7 +595,7 @@ export function 마지막_페이지_번호_탐색(DOM, 선택자 = '.pagination-
     return Number(마지막_페이지_번호_텍스트);
 }
 export function 요소_리스트_찾기(부모, 선택자) {
-    const 요소_리스트 = 부모.querySelectorAll(선택자);
+    const 요소_리스트 = Array.from(부모.querySelectorAll(선택자));
     return 요소_리스트;
 }
 export function 리스트_길이_추출(리스트) {
@@ -723,6 +755,22 @@ export function 워크_시트_추출(워크_북, 워크_시트_이름 = 'My Prod
     const 워크_시트 = 워크_북.getWorksheet(워크_시트_이름);
     return 워크_시트;
 }
+export function <span class="fstat-no" title="function not covered" >엑셀_행_셀_값_추출(</span>행, 행_식별자) {
+    const 셀 = <span class="cstat-no" title="statement not covered" >행.getCell(행_식별자);</span>
+<span class="cstat-no" title="statement not covered" >    return 셀;</span>
+}
+export async function 이미지_생성(URL) {
+    const 이미지 = document.createElement('img');
+    이미지.src = URL;
+    await 이미지.decode();
+    return 이미지;
+}
+export function 캔버스_생성(높이 = 1000, 너비 = 1000) {
+    const 캔버스 = document.createElement('canvas');
+    캔버스.height = 높이;
+    캔버스.width = 너비;
+    return 캔버스;
+}
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -730,7 +778,7 @@ export function 워크_시트_추출(워크_북, 워크_시트_이름 = 'My Prod
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Fri Dec 10 2021 01:41:24 GMT+0900 (대한민국 표준시)
+                at Tue Dec 14 2021 01:04:34 GMT+0900 (대한민국 표준시)
             </div>
         </div>
         <script src="../../prettify.js"></script>

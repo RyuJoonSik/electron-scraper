@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "start": "electron-forge start",
-    "test": "jest",
+    "test": "jest --watchAll --coverage",
     "wp": "webpack --watch",
     "ts": "tsc -w",
     "package": "electron-forge package",
