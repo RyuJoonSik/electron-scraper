@@ -89,6 +89,6 @@
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
     "skipLibCheck": true /* Skip type checking all .d.ts files. */
   },
-  "include": ["Components/Component"]
+  "include": ["src/components/Component"]
   // "exclude": ["./node_modules"]
 }

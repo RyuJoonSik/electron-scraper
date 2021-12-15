@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>14/14</span>
+                <span class='fraction'>0/14</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>2/2</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>4/4</span>
+                <span class='fraction'>0/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>14/14</span>
+                <span class='fraction'>0/14</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -95,56 +95,56 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">66x</span>
-<span class="cline-any cline-yes">66x</span>
-<span class="cline-any cline-yes">66x</span>
-<span class="cline-any cline-yes">66x</span>
-<span class="cline-any cline-yes">66x</span>
-<span class="cline-any cline-yes">66x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">149x</span>
-<span class="cline-any cline-yes">149x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">149x</span>
-<span class="cline-any cline-yes">149x</span>
-<span class="cline-any cline-yes">149x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import 컴포넌트 from '../Component/Component.js';
 export default class 검색_버튼 extends 컴포넌트 {
     URL_접두사;
-    constructor(부모, 속성) {
-        super(부모);
-        this.속성 = 속성;
-        const { 검색_유형 } = this.속성;
-        const 키워드_검색_URL_접두사 = 'https://kr.iherb.com/search?kw=';
-        const 브랜드_검색_URL_접두사 = 'https://kr.iherb.com/c/';
-        this.URL_접두사 = 검색_유형 === 'keyword' ? 키워드_검색_URL_접두사 : 브랜드_검색_URL_접두사;
+<span class="fstat-no" title="function not covered" >    co</span>nstructor(부모, 속성) {
+<span class="cstat-no" title="statement not covered" >        super(부모);</span>
+<span class="cstat-no" title="statement not covered" >        this.속성 = 속성;</span>
+        const { 검색_유형 } = <span class="cstat-no" title="statement not covered" >this.속성;</span>
+        const 키워드_검색_URL_접두사 = <span class="cstat-no" title="statement not covered" >'https://kr.iherb.com/search?kw=';</span>
+        const 브랜드_검색_URL_접두사 = <span class="cstat-no" title="statement not covered" >'https://kr.iherb.com/c/';</span>
+<span class="cstat-no" title="statement not covered" >        this.URL_접두사 = 검색_유형 === 'keyword' ? 키워드_검색_URL_접두사 : 브랜드_검색_URL_접두사;</span>
     }
-    HTML_추가() {
-        const { 부모 } = this;
-        부모.innerHTML = `
+<span class="fstat-no" title="function not covered" >    HT</span>ML_추가() {
+        const { 부모 } = <span class="cstat-no" title="statement not covered" >this;</span>
+<span class="cstat-no" title="statement not covered" >        부모.innerHTML = `</span>
     &lt;button data-testid="search-btn" type="button"&gt;검색&lt;/button&gt;
     `;
     }
-    이벤트_설정() {
-        const 검색_버튼_선택자 = '[data-testid="search-btn"]';
-        const 검색_버튼 = this.부모.querySelector(검색_버튼_선택자);
-        검색_버튼.addEventListener('click', this.클릭_이벤트.bind(this));
+<span class="fstat-no" title="function not covered" >    이벤</span>트_설정() {
+        const 검색_버튼_선택자 = <span class="cstat-no" title="statement not covered" >'[data-testid="search-btn"]';</span>
+        const 검색_버튼 = <span class="cstat-no" title="statement not covered" >this.부모.querySelector(검색_버튼_선택자);</span>
+<span class="cstat-no" title="statement not covered" >        검색_버튼.addEventListener('click', this.클릭_이벤트.bind(this));</span>
     }
-    async 클릭_이벤트() {
-        const { 검색, 검색어 } = this.속성;
-        const { URL_접두사 } = this;
-        await 검색(URL_접두사, 검색어);
+<span class="fstat-no" title="function not covered" >    as</span>ync 클릭_이벤트() {
+        const { 검색, 검색어 } = <span class="cstat-no" title="statement not covered" >this.속성;</span>
+        const { URL_접두사 } = <span class="cstat-no" title="statement not covered" >this;</span>
+<span class="cstat-no" title="statement not covered" >        await 검색(URL_접두사, 검색어);</span>
     }
 }
 &nbsp;</pre></td></tr></table></pre>
@@ -154,7 +154,7 @@ export default class 검색_버튼 extends 컴포넌트 {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Wed Dec 15 2021 09:41:12 GMT+0900 (대한민국 표준시)
+                at Wed Dec 15 2021 11:30:45 GMT+0900 (대한민국 표준시)
             </div>
         </div>
         <script src="../../prettify.js"></script>

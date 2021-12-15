@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  entry: './index.js',
+  entry: './src/ts/index.js',
   externals: {
     fs: 'commonjs fs',
     path: 'commonjs path'
@@ -9,7 +9,7 @@ module.exports = {
   target: 'node',
   output: {
     filename: 'app.js',
-    path: path.resolve(__dirname)
+    path: path.resolve(`${__dirname}/public`)
   },
   // mode: 'production'
   mode: 'development'
