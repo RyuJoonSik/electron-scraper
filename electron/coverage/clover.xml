@@ -1,17 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1639550438909" clover="3.2.0">
-  <project timestamp="1639550438909" name="All files">
-    <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="5" elements="14" coveredelements="13" complexity="0" loc="8" ncloc="8" packages="1" files="1" classes="1"/>
+<coverage generated="1639927043578" clover="3.2.0">
+  <project timestamp="1639927043578" name="All files">
+    <metrics statements="13" coveredstatements="13" conditionals="0" coveredconditionals="0" methods="10" coveredmethods="10" elements="23" coveredelements="23" complexity="0" loc="13" ncloc="13" packages="1" files="1" classes="1"/>
     <file name="Component.js" path="P:\Study\js-scraper\electron\src\components\Component\Component.js">
-      <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="5"/>
-      <line num="4" count="5" type="stmt"/>
-      <line num="6" count="5" type="stmt"/>
-      <line num="7" count="5" type="stmt"/>
-      <line num="8" count="5" type="stmt"/>
-      <line num="11" count="3" type="stmt"/>
-      <line num="21" count="7" type="stmt"/>
-      <line num="24" count="5" type="stmt"/>
-      <line num="27" count="4" type="stmt"/>
+      <metrics statements="13" coveredstatements="13" conditionals="0" coveredconditionals="0" methods="10" coveredmethods="10"/>
+      <line num="4" count="24" type="stmt"/>
+      <line num="6" count="24" type="stmt"/>
+      <line num="7" count="24" type="stmt"/>
+      <line num="8" count="24" type="stmt"/>
+      <line num="11" count="2" type="stmt"/>
+      <line num="12" count="2" type="stmt"/>
+      <line num="15" count="22" type="stmt"/>
+      <line num="16" count="22" type="stmt"/>
+      <line num="17" count="22" type="stmt"/>
+      <line num="18" count="22" type="stmt"/>
+      <line num="25" count="18" type="stmt"/>
+      <line num="28" count="13" type="stmt"/>
+      <line num="31" count="56" type="stmt"/>
     </file>
   </project>
 </coverage>
