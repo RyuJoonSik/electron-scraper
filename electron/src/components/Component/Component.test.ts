@@ -4,8 +4,12 @@ import userEvent from '@testing-library/user-event';
 
 import 컴포넌트 from './Component';
 
+interface 문자열_프로퍼티_객체 {
+  readonly [키: string]: any;
+}
+
 class 임시_컴포넌트 extends 컴포넌트 {
-  protected 상태_초기화(): void {
+  protected 상태_초기화() {
     this.상태 = {type: 'component'};
   }
 
@@ -180,4 +184,6 @@ describe('컴포넌트 클래스', () => {
 
     expect(렌더_스파이).toBeCalled();
   });
+
+  it('옵저버 상태 테스트', () => {});
 });

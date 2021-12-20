@@ -1,32 +1,37 @@
-import {observable, observe} from '../../ts/observer/observer';
+import {observable, observe, test} from '../../ts/observer/observer';
 
 interface 문자열_프로퍼티_객체 {
-  readonly [키: string]: any;
+  [키: string]: any;
 }
 
 export default abstract class 컴포넌트 {
-  private _상태: 문자열_프로퍼티_객체 = {};
+  _상태: 문자열_프로퍼티_객체 = {};
 
   constructor(private readonly _부모: HTMLElement, private readonly 속성?: 문자열_프로퍼티_객체) {
     this.상태_초기화();
   }
 
-  protected 상태_변경(새_상태: 문자열_프로퍼티_객체): void {
-    this._상태 = {...this.상태, ...새_상태};
+  // protected 상태_변경(새_상태: 문자열_프로퍼티_객체): void {
+  //   this._상태 = {...this.상태, ...새_상태};
 
-    this.렌더();
-  }
-
-  // protected 상태_초기화(): void {
-  //   this._상태 = observable(this.상태_생성());
-
-  //   observe(() => {
-  //     console.log('옵저버 등록');
-  //     this.렌더();
-  //   });
+  //   this.부모_컴포넌트에_HTML_추가();
   // }
 
-  protected 상태_초기화(): void {}
+  protected 상태_초기화(): void {
+    // const 새_상태 = this.상태_생성();
+    const 렌더 = this.렌더.bind(this);
+    // this.상태 = observable(새_상태);
+    test['a'] = false;
+    observe(() => {
+      // console.log(this);
+      console.log('hello store');
+      this.렌더();
+    });
+  }
+
+  protected 상태_생성(): 문자열_프로퍼티_객체 {
+    return {};
+  }
 
   렌더(): void {
     this.부모_컴포넌트에_HTML_추가();
@@ -48,7 +53,7 @@ export default abstract class 컴포넌트 {
   }
 
   set 상태(새_상태: 문자열_프로퍼티_객체) {
-    this._상태 = {...this.상태, ...새_상태};
+    this._상태 = 새_상태;
   }
 
   get 부모() {
