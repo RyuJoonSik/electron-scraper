@@ -1,4 +1,4 @@
-import { observe, test } from '../../ts/observer/observer';
+import { 옵저버_함수_등록 } from '../observer/observer';
 export default class 컴포넌트 {
     _부모;
     속성;
@@ -6,22 +6,15 @@ export default class 컴포넌트 {
     constructor(_부모, 속성) {
         this._부모 = _부모;
         this.속성 = 속성;
-        this.상태_초기화();
+        this.옵저버_함수_초기화();
     }
-    // protected 상태_변경(새_상태: 문자열_프로퍼티_객체): void {
-    //   this._상태 = {...this.상태, ...새_상태};
-    //   this.부모_컴포넌트에_HTML_추가();
-    // }
-    상태_초기화() {
-        // const 새_상태 = this.상태_생성();
+    상태_변경(새_상태) {
+        this._상태 = { ...this.상태, ...새_상태 };
+        this.렌더();
+    }
+    옵저버_함수_초기화() {
         const 렌더 = this.렌더.bind(this);
-        // this.상태 = observable(새_상태);
-        test['a'] = false;
-        observe(() => {
-            // console.log(this);
-            console.log('hello store');
-            this.렌더();
-        });
+        옵저버_함수_등록(렌더);
     }
     상태_생성() {
         return {};
