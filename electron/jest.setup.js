@@ -126,16 +126,16 @@ const mockFetch = (URL) => {
 
 beforeAll(() => {
   global.fetch = mockFetch;
-  Image.prototype.decode = () => Promise.resolve;
+  // Image.prototype.decode = () => Promise.resolve;
   // console.log = () => {};
   // console.error = () => {};
 
-  const ctx = {
-    clearRect: () => {},
-    drawImage: () => {}
-  };
+  // const ctx = {
+  // clearRect: () => {},
+  // drawImage: () => {}
+  // };
 
-  HTMLCanvasElement.prototype.getContext = () => ctx;
-  HTMLCanvasElement.prototype.toDataURL = () => 'data:image/png;base64,hello';
+  // HTMLCanvasElement.prototype.getContext = () => ctx;
+  // HTMLCanvasElement.prototype.toDataURL = () => 'data:image/png;base64,hello';
 });
 afterAll(() => {});

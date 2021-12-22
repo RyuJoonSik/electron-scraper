@@ -1,4 +1,4 @@
-import { 옵저버_함수_등록 } from '../observer/observer';
+import { 옵저버_객체 } from '../observer/observer';
 export default class 컴포넌트 {
     _부모;
     속성;
@@ -14,7 +14,7 @@ export default class 컴포넌트 {
     }
     옵저버_함수_초기화() {
         const 렌더 = this.렌더.bind(this);
-        옵저버_함수_등록(렌더);
+        옵저버_객체.함수_등록(렌더);
     }
     상태_생성() {
         return {};
