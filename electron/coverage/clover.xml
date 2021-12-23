@@ -1,7 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1640168825252" clover="3.2.0">
-  <project timestamp="1640168825252" name="All files">
-    <metrics statements="28" coveredstatements="26" conditionals="7" coveredconditionals="5" methods="11" coveredmethods="11" elements="46" coveredelements="42" complexity="0" loc="28" ncloc="28" packages="2" files="2" classes="2"/>
+<coverage generated="1640263783228" clover="3.2.0">
+  <project timestamp="1640263783228" name="All files">
+    <metrics statements="46" coveredstatements="40" conditionals="21" coveredconditionals="16" methods="13" coveredmethods="13" elements="80" coveredelements="69" complexity="0" loc="46" ncloc="46" packages="3" files="3" classes="3"/>
+    <package name="domUpdater">
+      <metrics statements="18" coveredstatements="12" conditionals="14" coveredconditionals="9" methods="2" coveredmethods="2"/>
+      <file name="domUpdater.js" path="P:\Study\js-scraper\electron\src\modules\domUpdater\domUpdater.js">
+        <metrics statements="18" coveredstatements="12" conditionals="14" coveredconditionals="9" methods="2" coveredmethods="2"/>
+        <line num="3" count="1" type="cond" truecount="2" falsecount="2"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="7" count="1" type="cond" truecount="3" falsecount="1"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="10" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="27" count="1" type="stmt"/>
+        <line num="28" count="2" type="stmt"/>
+        <line num="29" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="30" count="2" type="stmt"/>
+        <line num="33" count="1" type="stmt"/>
+        <line num="34" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="35" count="1" type="stmt"/>
+      </file>
+    </package>
     <package name="observer">
       <metrics statements="15" coveredstatements="15" conditionals="0" coveredconditionals="0" methods="8" coveredmethods="8"/>
       <file name="observer.js" path="P:\Study\js-scraper\electron\src\modules\observer\observer.js">
@@ -13,8 +37,8 @@
         <line num="11" count="3" type="stmt"/>
         <line num="12" count="3" type="stmt"/>
         <line num="13" count="6" type="stmt"/>
-        <line num="15" count="16" type="stmt"/>
-        <line num="18" count="3" type="stmt"/>
+        <line num="15" count="26" type="stmt"/>
+        <line num="18" count="4" type="stmt"/>
         <line num="19" count="9" type="stmt"/>
         <line num="23" count="6" type="stmt"/>
         <line num="25" count="3" type="stmt"/>
@@ -24,22 +48,22 @@
       </file>
     </package>
     <package name="store">
-      <metrics statements="13" coveredstatements="11" conditionals="7" coveredconditionals="5" methods="3" coveredmethods="3"/>
+      <metrics statements="13" coveredstatements="13" conditionals="7" coveredconditionals="7" methods="3" coveredmethods="3"/>
       <file name="store.js" path="P:\Study\js-scraper\electron\src\modules\store\store.js">
-        <metrics statements="13" coveredstatements="11" conditionals="7" coveredconditionals="5" methods="3" coveredmethods="3"/>
+        <metrics statements="13" coveredstatements="13" conditionals="7" coveredconditionals="7" methods="3" coveredmethods="3"/>
         <line num="3" count="1" type="stmt"/>
         <line num="7" count="1" type="stmt"/>
-        <line num="24" count="1" type="stmt"/>
+        <line num="9" count="2" type="stmt"/>
+        <line num="12" count="2" type="stmt"/>
+        <line num="13" count="2" type="stmt"/>
+        <line num="14" count="2" type="stmt"/>
+        <line num="15" count="4" type="cond" truecount="4" falsecount="0"/>
+        <line num="16" count="2" type="stmt"/>
+        <line num="21" count="5" type="cond" truecount="3" falsecount="0"/>
+        <line num="23" count="3" type="stmt"/>
+        <line num="25" count="1" type="stmt"/>
         <line num="27" count="1" type="stmt"/>
-        <line num="28" count="1" type="stmt"/>
-        <line num="29" count="1" type="stmt"/>
-        <line num="30" count="2" type="cond" truecount="4" falsecount="0"/>
         <line num="31" count="1" type="stmt"/>
-        <line num="36" count="2" type="cond" truecount="1" falsecount="2"/>
-        <line num="38" count="2" type="stmt"/>
-        <line num="40" count="0" type="stmt"/>
-        <line num="42" count="0" type="stmt"/>
-        <line num="46" count="1" type="stmt"/>
       </file>
     </package>
   </project>

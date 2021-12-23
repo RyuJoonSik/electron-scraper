@@ -1,4 +1,8 @@
-interface 문자열_프로퍼티_객체 {
+interface 읽기_전용_객체 {
+  readonly [키: string]: any;
+}
+
+interface 읽기_쓰기_객체 {
   [키: string]: any;
 }
 
@@ -13,10 +17,10 @@ class 옵저버 {
     this.함수_셋.add(함수);
   }
 
-  전역_상태로_변환(상태: 문자열_프로퍼티_객체): 문자열_프로퍼티_객체 {
+  전역_상태로_변환(상태: 읽기_전용_객체): 읽기_쓰기_객체 {
     const 함수_배열 = this.함수_셋;
     const 전역_상태 = {};
-    const 프로퍼티_객체 = Object.entries(상태).reduce((객체: 문자열_프로퍼티_객체, [키, 값]) => {
+    const 프로퍼티_객체 = Object.entries(상태).reduce((객체: 읽기_쓰기_객체, [키, 값]) => {
       객체[키] = {
         get() {
           return 값;
